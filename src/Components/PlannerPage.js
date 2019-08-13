@@ -23,7 +23,7 @@ class PlannerPage extends Component {
     this.setState({
       ...this.state,
       plannerDay: date
-    }, console.log("set PlannerDay function: ", this.state.plannerDay))
+    })
   }
 
   // fetch all items from user.id =2

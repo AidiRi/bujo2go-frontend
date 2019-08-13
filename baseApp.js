@@ -10,8 +10,9 @@ class BaseApp extends Component  {
   constructor() {
     super()
 
-    let today = new Date()
-    today = today.toISOString().split('T')[0]
+    let today = new Date();
+    let date = new Date(today.toDateString());
+    today = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
 
     this.state = {
       todaysDate: today
@@ -40,10 +41,10 @@ class BaseApp extends Component  {
   }
 
   componentDidMount(){
-    let today = new Date()
-    today = today.toISOString().split('T')[0]
-
-    this.changeDateState(today)
+    // let today = new Date()
+    // today = today.toISOString().split('T')[0]
+    //
+    // this.changeDateState(today)
   }
 
   componentDidUpdate(){
