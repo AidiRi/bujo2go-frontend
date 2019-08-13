@@ -1,5 +1,12 @@
 import React, { PureComponent } from 'react'
-import { View, Text } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Alert,
+  } from 'react-native'
 import Calendar from './PlannerComponents/calendar'
 import PlannerList from './PlannerComponents/plannerList'
 
@@ -26,6 +33,7 @@ class PlannerPage extends PureComponent {
     }, console.log("plannerDay change"))
   }
 
+  // ***********************
   // fetch all items from user.id =2
   callItems = () => {
     fetch("https://mod5-bullet-journal-api.herokuapp.com/users/2")
@@ -72,6 +80,12 @@ class PlannerPage extends PureComponent {
     }
 
 
+  // *******************
+  // addItem Button handleClick function
+  addButtonHandler = () => {
+    Alert.alert('Button Clicked')
+  }
+
 
 
 
@@ -79,22 +93,40 @@ class PlannerPage extends PureComponent {
 
     return (
 
-      <View>
+      <View >
         <Calendar
         setPlannerDay={this.setPlannerDay}
         todaysDate={this.props.todaysDate}
         plannerDate={this.state.plannerDay}
         reCallItems={this.callItems}
         />
+        <View
+        style={styles.ListStyle}
+        >
         <PlannerList
-
         todaysDate={this.props.todaysDate}
         displayDaysItems={this.displayDaysItems}
         daysEvents={this.state.daysItems.events}
         daysTasks={this.state.daysItems.tasks}
         daysNotes={this.state.daysItems.notes}
         />
-        <Text>  </Text>
+        </View>
+
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={this.clickHandler}
+          style={styles.TouchableOpacityStyle}>
+          <Image
+            //We are making FAB using TouchableOpacity with an image
+            //We are using online image here
+             source={{
+               uri:'https://aboutreact.com/wp-content/uploads/2018/08/bc72de57b000a7037294b53d34c2cbd1.png',
+            }}
+            //You can use you project image Example below
+            //source={require('./images/float-add-icon.png')}
+            style={styles.FloatingButtonStyle}
+          />
+        </TouchableOpacity>
       </View>
     )
   }
@@ -119,5 +151,37 @@ class PlannerPage extends PureComponent {
   //   }
   // }
 }
+
+const styles = StyleSheet.create({
+  MainContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+  },
+  ListStyle: {
+
+    flex: 1,
+    backgroundColor: 'gray'
+  },
+
+  TouchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 10,
+  },
+
+  FloatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 50,
+    height: 50,
+    //backgroundColor:'black'
+  },
+});
+
 
 export default PlannerPage;
