@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
 import _ from 'lodash';
 import {ExpandableCalendar, AgendaList, CalendarProvider} from 'react-native-calendars';
 
-// props ={ setPlannerDay() , todaysDate, plannerDate}
+// props ={ setPlannerDay() , todaysDate, plannerDate, reCallItems()}
 
 // const today = new Date().toISOString().split('T')[0];
 // const fastDate = getPastDate(3);
@@ -47,14 +47,15 @@ import {ExpandableCalendar, AgendaList, CalendarProvider} from 'react-native-cal
 //   {title: dates[10], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]}
 // ];
 
-class Calendar extends Component{
+class Calendar extends PureComponent{
 
   onDateChanged = ( date, updateSource ) => {
     if ( date.length ){
       this.props.setPlannerDay(date)
-      console.log(date, "not null", "props: PLANNER DAY ", this.props.plannerDate)
+      console.log("date change, setPlannerDay invoked")
+      this.props.reCallItems()
     } else {
-      console.log(date, " date is null ")
+      console.log(date, "No change: date is null ")
     }
 
   }

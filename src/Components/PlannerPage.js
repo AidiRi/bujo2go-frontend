@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text } from 'react-native'
 import Calendar from './PlannerComponents/calendar'
 import PlannerList from './PlannerComponents/plannerList'
 
 
 // props = { todaysDate , changeDateState()}
-class PlannerPage extends Component {
+class PlannerPage extends PureComponent {
 
   constructor(){
     super()
@@ -23,7 +23,7 @@ class PlannerPage extends Component {
     this.setState({
       ...this.state,
       plannerDay: date
-    })
+    }, console.log("plannerDay change"))
   }
 
   // fetch all items from user.id =2
@@ -84,6 +84,7 @@ class PlannerPage extends Component {
         setPlannerDay={this.setPlannerDay}
         todaysDate={this.props.todaysDate}
         plannerDate={this.state.plannerDay}
+        reCallItems={this.callItems}
         />
         <PlannerList
 
@@ -99,12 +100,23 @@ class PlannerPage extends Component {
   }
 
   componentDidMount(){
-    this.callItems()
+
     this.setPlannerDay(this.props.todaysDate)
+    this.callItems()
   }
 
-  // componentWillReceiveProps(){
-  //   this.callItems()
+  // shouldComponentUpdate(nextProp, nextState){
+  //
+  // }
+
+  // componentDidUpdate(prevProps, prevState){
+  //   if ( this.state.plannerDay !== null && prevState.plannerDay !== this.state.plannerDay ){
+  //     console.log("plannerDay: ", prevSate.plannerDay, this.state.plannerDay)
+  //     // this.callItems()
+  //   } else if (this.state.daysItem !== null && prevState.daysItems !== this.state.daysItems) {
+  //     console.log("daysItems: ", prevState.daysItems, this.state.daysItems)
+  //     // this.callItems()
+  //   }
   // }
 }
 
