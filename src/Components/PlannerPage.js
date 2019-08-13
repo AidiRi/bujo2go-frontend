@@ -17,7 +17,7 @@ class PlannerPage extends PureComponent {
   constructor(){
     super()
     this.state = {
-      addModalIsVisible: false,
+      isAddModalOpen: false,
       plannerDay: null,
       daysItems: {
         notes: null,
@@ -83,11 +83,13 @@ class PlannerPage extends PureComponent {
 
   // *******************
   // addItem Button handleClick function
-  addButtonHandler = () => {
-    Alert.alert('added Item to ', this.state.plannerDay)
 
+  toggleAddModal = boolean => {
+    this.setState({
+      ...this.state,
+      isAddModalOpen: boolean
+    })
   }
-
 
 
 
@@ -113,7 +115,8 @@ class PlannerPage extends PureComponent {
           daysEvents={this.state.daysItems.events}
           daysTasks={this.state.daysItems.tasks}
           daysNotes={this.state.daysItems.notes}
-          addButtonHandler={this.addButtonHandler}
+          toggleAddModal={this.toggleAddModal}
+          isAddModalOpen={this.state.isAddModalOpen}
         />
         </View>
 

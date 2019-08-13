@@ -17,7 +17,9 @@ import AddItemModal from './addItemModal'
 // daysNotes,
 // daysTasks,
 // daysEvents,
-// addButtonHandler()}
+// addButtonHandler(),
+// toggleAddModal(),
+// isAddModalOpen }
 
 const PlannerList = (props) => {
 
@@ -68,8 +70,14 @@ const PlannerList = (props) => {
     <View style={styles.ListStyle}>
       {displayDaysItems(props.daysNotes, props.daysTasks, props.daysEvents)}
 
-      <AddItemModal />
-      <AddButton addButtonHandler={props.addButtonHandler}/>
+      <AddItemModal
+      isAddModalOpen={props.isAddModalOpen}
+      toggleAddModal={props.toggleAddModal}
+      />
+
+      <AddButton
+      toggleAddModal={props.toggleAddModal}
+      />
 
     </View>
   )

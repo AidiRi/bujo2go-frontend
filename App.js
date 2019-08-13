@@ -10,6 +10,7 @@ import BaseApp from './baseApp'
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
+
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading
@@ -23,9 +24,11 @@ export default function App(props) {
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <BaseApp/>
+
       </View>
     );
   }
+
 }
 
 async function loadResourcesAsync() {
