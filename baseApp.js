@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import PlannerPage from './src/Components/PlannerPage'
 
 
@@ -31,7 +31,9 @@ class BaseApp extends Component  {
 
   render(){
     return(
-      <View>
+      <View
+        style={styles.BaseContainer}
+      >
       <PlannerPage
       todaysDate={this.state.todaysDate}
       changeDateState={this.changeDateState}
@@ -51,5 +53,14 @@ class BaseApp extends Component  {
     console.log("component updated with: ", this.state.todaysDate)
   }
 }
+
+const styles = StyleSheet.create({
+  BaseContainer: {
+    marginTop: 20,
+    flex: 1,
+    backgroundColor: 'whitesmoke',
+
+  },
+})
 
 export default BaseApp;

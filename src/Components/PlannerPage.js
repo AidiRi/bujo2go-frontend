@@ -6,9 +6,11 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Platform
   } from 'react-native'
 import Calendar from './PlannerComponents/calendar'
 import PlannerList from './PlannerComponents/plannerList'
+import { Ionicons } from '@expo/vector-icons';
 
 
 // props = { todaysDate , changeDateState()}
@@ -93,39 +95,42 @@ class PlannerPage extends PureComponent {
 
     return (
 
-      <View >
+      <View
+        style={styles.MainContainer}
+      >
         <Calendar
-        setPlannerDay={this.setPlannerDay}
-        todaysDate={this.props.todaysDate}
-        plannerDate={this.state.plannerDay}
-        reCallItems={this.callItems}
+          setPlannerDay={this.setPlannerDay}
+          todaysDate={this.props.todaysDate}
+          plannerDate={this.state.plannerDay}
+          reCallItems={this.callItems}
         />
         <View
-        style={styles.ListStyle}
+          style={styles.ListStyle}
         >
         <PlannerList
-        todaysDate={this.props.todaysDate}
-        displayDaysItems={this.displayDaysItems}
-        daysEvents={this.state.daysItems.events}
-        daysTasks={this.state.daysItems.tasks}
-        daysNotes={this.state.daysItems.notes}
+          todaysDate={this.props.todaysDate}
+          displayDaysItems={this.displayDaysItems}
+          daysEvents={this.state.daysItems.events}
+          daysTasks={this.state.daysItems.tasks}
+          daysNotes={this.state.daysItems.notes}
         />
         </View>
 
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={this.clickHandler}
+          onPress={this.addButtonHandler}
           style={styles.TouchableOpacityStyle}>
-          <Image
-            //We are making FAB using TouchableOpacity with an image
-            //We are using online image here
-             source={{
-               uri:'https://aboutreact.com/wp-content/uploads/2018/08/bc72de57b000a7037294b53d34c2cbd1.png',
-            }}
-            //You can use you project image Example below
-            //source={require('./images/float-add-icon.png')}
-            style={styles.FloatingButtonStyle}
+
+          <Ionicons
+          name={
+            Platform.OS === 'ios'
+              ? `ios-add-circle`
+              : 'md-add-circle'
+          }
+          size={60}
+          color='dodgerblue'
           />
+
         </TouchableOpacity>
       </View>
     )
@@ -155,14 +160,10 @@ class PlannerPage extends PureComponent {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5F5F5',
   },
   ListStyle: {
-
     flex: 1,
-    backgroundColor: 'gray'
+    backgroundColor: 'whitesmoke',
   },
 
   TouchableOpacityStyle: {
