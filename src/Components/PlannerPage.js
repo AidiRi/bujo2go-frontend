@@ -4,13 +4,11 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Image,
   Alert,
   Platform
   } from 'react-native'
 import Calendar from './PlannerComponents/calendar'
 import PlannerList from './PlannerComponents/plannerList'
-import { Ionicons } from '@expo/vector-icons';
 
 
 // props = { todaysDate , changeDateState()}
@@ -19,6 +17,7 @@ class PlannerPage extends PureComponent {
   constructor(){
     super()
     this.state = {
+      addIsVisible: false,
       plannerDay: null,
       daysItems: {
         notes: null,
@@ -85,7 +84,8 @@ class PlannerPage extends PureComponent {
   // *******************
   // addItem Button handleClick function
   addButtonHandler = () => {
-    Alert.alert('Button Clicked')
+    Alert.alert('added Item to ', this.state.plannerDay)
+
   }
 
 
@@ -113,25 +113,11 @@ class PlannerPage extends PureComponent {
           daysEvents={this.state.daysItems.events}
           daysTasks={this.state.daysItems.tasks}
           daysNotes={this.state.daysItems.notes}
+          addButtonHandler={this.addButtonHandler}
         />
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={this.addButtonHandler}
-          style={styles.TouchableOpacityStyle}>
 
-          <Ionicons
-          name={
-            Platform.OS === 'ios'
-              ? `ios-add-circle`
-              : 'md-add-circle'
-          }
-          size={60}
-          color='dodgerblue'
-          />
-
-        </TouchableOpacity>
       </View>
     )
   }

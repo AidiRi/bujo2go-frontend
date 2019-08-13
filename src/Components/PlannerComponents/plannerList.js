@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Platform
+} from 'react-native'
 import Event from './event'
 import Note from './note'
 import Task from './task'
 import EmptyList from './EmptyList'
+import AddButton from './addButton'
+// Props ={ todaysDate,
+// displayDaysItems(),
+// daysNotes,
+// daysTasks,
+// daysEvents,
+// addButtonHandler()}
 
-// Props ={ todaysDate, displayDaysItems(), daysNotes, daysTasks, daysEvents}
 const PlannerList = (props) => {
 
   const displayDaysItems = (notes, tasks, events) => {
@@ -52,11 +64,42 @@ const PlannerList = (props) => {
   }
 
   return (
-    <View>
+    <View style={styles.ListStyle}>
       {displayDaysItems(props.daysNotes, props.daysTasks, props.daysEvents)}
+
+      <AddButton addButtonHandler={props.addButtonHandler}/>
+
+
     </View>
   )
 
 }
+
+const styles = StyleSheet.create({
+  MainContainer: {
+    flex: 1,
+  },
+  ListStyle: {
+    flex: 1,
+    backgroundColor: 'whitesmoke',
+  },
+
+  TouchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 10,
+  },
+
+  FloatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 50,
+    height: 50,
+    //backgroundColor:'black'
+  },
+});
 
 export default PlannerList;
