@@ -10,7 +10,7 @@ class PlannerPage extends Component {
   constructor(){
     super()
     this.state = {
-      plannerDay: this.props.todaysDate,
+      plannerDay: null,
       daysItems: {
         notes: null,
         tasks: null,
@@ -23,7 +23,7 @@ class PlannerPage extends Component {
     this.setState({
       ...this.state,
       plannerDay: date
-    })
+    }, console.log("set PlannerDay function: ", this.state.plannerDay))
   }
 
   // fetch all items from user.id =2
@@ -100,6 +100,7 @@ class PlannerPage extends Component {
 
   componentDidMount(){
     this.callItems()
+    this.setPlannerDay(this.props.todaysDate)
   }
 
   // componentWillReceiveProps(){

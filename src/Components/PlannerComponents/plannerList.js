@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import Event from './event'
 import Note from './note'
 import Task from './task'
-import EmptyList from './emptyList'
+import EmptyList from './EmptyList'
 
 // Props ={ todaysDate, displayDaysItems(), daysNotes, daysTasks, daysEvents}
 const PlannerList = (props) => {

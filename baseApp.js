@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import { View, Text } from 'react-native'
-import PlannerPage from './Components/PlannerPage'
+import PlannerPage from './src/Components/PlannerPage'
 
 
 
