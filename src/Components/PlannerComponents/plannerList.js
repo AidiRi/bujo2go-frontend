@@ -21,9 +21,9 @@ import AddItemModal from './addItemModal'
 // toggleAddModal(),
 // isAddModalOpen }
 
-const PlannerList = (props) => {
+class PlannerList extends Component {
 
-  const displayDaysItems = (notes, tasks, events) => {
+  displayDaysItems = (notes, tasks, events) => {
     if (events && events.length > 0) {
       return createEvents(events)
     } else if (tasks && tasks.length > 0) {
@@ -35,7 +35,7 @@ const PlannerList = (props) => {
     }
   }
 
-  const createEvents = events => {
+  createEvents = events => {
     return events.map( (event, idx) => {
       return <Event
       key={idx}
@@ -47,7 +47,7 @@ const PlannerList = (props) => {
     })
   }
 
-  const createTasks = tasks => {
+  createTasks = tasks => {
     return tasks.map( (task, idx) => {
       return <Task
       key={idx}
@@ -57,7 +57,7 @@ const PlannerList = (props) => {
       />
     })
   }
-  const createNotes = notes => {
+  createNotes = notes => {
     return notes.map( (note, idx) => {
       return <Note
       key={idx}
@@ -66,21 +66,23 @@ const PlannerList = (props) => {
     })
   }
 
-  return (
-    <View style={styles.ListStyle}>
-      {displayDaysItems(props.daysNotes, props.daysTasks, props.daysEvents)}
+  render(){
+    return (
+      <View style={styles.ListStyle}>
+        {this.displayDaysItems(this.props.daysNotes, this.props.daysTasks, this.props.daysEvents)}
 
-      <AddItemModal
-      isAddModalOpen={props.isAddModalOpen}
-      toggleAddModal={props.toggleAddModal}
-      />
+        <AddItemModal
+        isAddModalOpen={this.props.isAddModalOpen}
+        toggleAddModal={this.props.toggleAddModal}
+        />
 
-      <AddButton
-      toggleAddModal={props.toggleAddModal}
-      />
+        <AddButton
+        toggleAddModal={this.props.toggleAddModal}
+        />
 
-    </View>
-  )
+      </View>
+    )
+  }
 
 }
 

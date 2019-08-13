@@ -1,13 +1,11 @@
 import React, { useState} from 'react'
-import { Modal, Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native'
+import { Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native'
 
 
 // props={
 // isAddModalDislay,
 // toggleAddModal() }
 const AddItemModal = props => {
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return(
     <View style={{marginTop: 22}}>
