@@ -11,6 +11,7 @@ import Note from './note'
 import Task from './task'
 import EmptyList from './EmptyList'
 import AddButton from './addButton'
+import AddItemModal from './addItemModal'
 // Props ={ todaysDate,
 // displayDaysItems(),
 // daysNotes,
@@ -67,8 +68,8 @@ const PlannerList = (props) => {
     <View style={styles.ListStyle}>
       {displayDaysItems(props.daysNotes, props.daysTasks, props.daysEvents)}
 
+      <AddItemModal />
       <AddButton addButtonHandler={props.addButtonHandler}/>
-
 
     </View>
   )

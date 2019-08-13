@@ -17,7 +17,7 @@ class PlannerPage extends PureComponent {
   constructor(){
     super()
     this.state = {
-      addIsVisible: false,
+      addModalIsVisible: false,
       plannerDay: null,
       daysItems: {
         notes: null,
