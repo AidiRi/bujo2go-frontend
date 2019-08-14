@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
-  FlatList
+  
 } from 'react-native'
 import Event from './event'
 import Note from './note'
@@ -57,8 +57,7 @@ class PlannerList extends PureComponent {
         </View>
 
         <AddItemModal
-        isAddModalOpen={this.props.isAddModalOpen}
-        toggleAddModal={this.props.toggleAddModal}
+
         />
 
         <AddButton

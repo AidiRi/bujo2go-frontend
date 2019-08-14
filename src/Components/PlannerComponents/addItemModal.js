@@ -1,5 +1,6 @@
-import React, { useState} from 'react'
-import { Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native'
+import React, { PureComponent, useState } from 'react'
+import { Text, TouchableHighlight, View, Alert, StyleSheet, Button} from 'react-native'
+import Modal from "react-native-modal";
 
 
 // props={
@@ -7,24 +8,32 @@ import { Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native'
 // toggleAddModal() }
 const AddItemModal = props => {
 
-  return(
-    <View style={{marginTop: 22}}>
+const [ isVisible, setIsVisible] = useState(false)
+//   constructor(){
+//     super()
+//     this.state = {
+//       isModalVisible: false
+//     }
+// }
+  //
+  // toggleModal = () => {
+  //   this.setState({ isModalVisible: !this.state.isModalVisible });
+  // };
 
-      {props.isAddModalOpen && <View style={{
-        backgroundColor: 'white',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        margin: '4em',
-        padding: '1em',
-        borderRadius: 5,
-      }}>
-        <Text>Add an item: </Text>
-        <Text onPress={() => props.toggleAddModal(false)}>close</Text>
-      </View>}
-    </View>
-  )
+  const toggleModal = () => setIsVisible( isVisible ? false : true )
+
+
+    return(
+      <View style={{ flex: 1 }}>
+        <Button title="Show modal" onPress={toggleModal} />
+        <Modal isVisible={isVisible}>
+          <View style={{ flex: 1 }}>
+            <Text>Hello!</Text>
+            <Button title="Hide modal" onPress={toggleModal} />
+          </View>
+        </Modal>
+      </View>
+    )
 }
 
 const styles = StyleSheet.create({
