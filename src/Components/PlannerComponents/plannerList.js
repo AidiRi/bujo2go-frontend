@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  Platform
+  Platform,
+  FlatList
 } from 'react-native'
 import Event from './event'
 import Note from './note'
@@ -21,55 +22,39 @@ import AddItemModal from './addItemModal'
 // toggleAddModal(),
 // isAddModalOpen }
 
-class PlannerList extends Component {
+class PlannerList extends PureComponent {
 
   displayDaysItems = (notes, tasks, events) => {
     if (events && events.length > 0) {
-      return createEvents(events)
+      return this.createEvents(events)
     } else if (tasks && tasks.length > 0) {
-      return createTasks(tasks)
+      return this.createTasks(tasks)
     } else if ( notes && notes.length > 0 ){
-      return createNotes(notes)
+      return this.createNotes(notes)
     } else if ( notes && events && tasks && notes.length===0 && events.length===0 && tasks.length===0){
       return <EmptyList/>
     }
   }
 
   createEvents = events => {
-    return events.map( (event, idx) => {
-      return <Event
-      key={idx}
-      title={event.title}
-      status={event.status}
-      // hour={event.hour}
-      // duration={event.duration}
-      />
-    })
+    return <Event events={events}/>
   }
 
   createTasks = tasks => {
-    return tasks.map( (task, idx) => {
-      return <Task
-      key={idx}
-      title={task.title}
-      status={task.status}
-      important={task.important}
-      />
-    })
+    return <Task tasks={tasks}/>
   }
+
   createNotes = notes => {
-    return notes.map( (note, idx) => {
-      return <Note
-      key={idx}
-      content={note.content}
-      />
-    })
+    return <Note notes={notes}/>
   }
+
 
   render(){
     return (
-      <View style={styles.ListStyle}>
+      <View style={styles.PlannerStyle}>
+        <View style={styles.ListStyle}>
         {this.displayDaysItems(this.props.daysNotes, this.props.daysTasks, this.props.daysEvents)}
+        </View>
 
         <AddItemModal
         isAddModalOpen={this.props.isAddModalOpen}
@@ -90,11 +75,16 @@ const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
   },
-  ListStyle: {
+  PlannerStyle: {
     flex: 1,
     backgroundColor: 'whitesmoke',
+    width: '90%',
+    margin: 'auto'
   },
-
+  ListStyle: {
+    flex: 1,
+    marginTop: 20,
+  },
   TouchableOpacityStyle: {
     position: 'absolute',
     width: 50,
@@ -110,6 +100,11 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     //backgroundColor:'black'
+  },
+  row: {
+    padding: 15,
+    marginBottom: 5,
+    backgroundColor: 'skyblue',
   },
 });
 
