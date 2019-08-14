@@ -1,9 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
-
-// props={ content }
+import { View, Text, StyleSheet, FlatList, Button } from 'react-native'
+import DeleteButton from './PlannerListComponents/deleteButton'
+// props={ content ,
+// delete()
+// }
 const Note = props => {
 
+  const type = "notes"
+  
   const renderItem = ({ item }) => {
     return (
       <Text style={styles.row}>
@@ -17,7 +21,10 @@ const Note = props => {
       data={props.notes}
       renderItem={({item}) => {
           return (
-            <Text style={styles.row}> -- {item.content} </Text>
+            <View style={styles.row}>
+              <Text > -- {item.content} </Text>
+              <DeleteButton delete={props.delete} id={item.id} type={type}/>
+            </View>
           )
       }}
       keyExtractor={({ id }) => id }

@@ -16,7 +16,7 @@ const AddButton = props => {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={()=> props.toggleAddModal(true)}
-        style={styles.TouchableOpacityStyle}>
+        style={styles.Button}>
         <Ionicons
         name={
           Platform.OS === 'ios'
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'whitesmoke',
   },
 
-  TouchableOpacityStyle: {
+  Button: {
     position: 'absolute',
     width: 50,
     height: 50,

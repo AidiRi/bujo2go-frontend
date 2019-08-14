@@ -20,7 +20,9 @@ import AddItemModal from './addItemModal'
 // daysEvents,
 // addButtonHandler(),
 // toggleAddModal(),
-// isAddModalOpen }
+// isAddModalOpen ,
+// userId
+// }
 
 class PlannerList extends PureComponent {
 
@@ -36,18 +38,33 @@ class PlannerList extends PureComponent {
     }
   }
 
+  // NOTE: Trying to refactor to account for just one ListItem component
+  //        instead of multiple components for each type of item
+  // createItems = items => {
+  //   return <Item items={items} type={"note"}/>
+  // }
+
   createEvents = events => {
-    return <Event events={events}/>
+    return <Event events={events} delete={this.deleteItem}/>
   }
 
   createTasks = tasks => {
-    return <Task tasks={tasks}/>
+    return <Task tasks={tasks} delete={this.deleteItem}/>
   }
 
   createNotes = notes => {
-    return <Note notes={notes}/>
+    return <Note notes={notes} delete={this.deleteItem}/>
   }
 
+// could put in ItemList.js when refactoring
+  deleteItem = (id, type ) => {
+    console.log(type, " item deleting with id of ", id)
+    fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
+      method: 'DELETE'
+    }).then(resp => resp.json())
+
+
+  }
 
   render(){
     return (

@@ -17,6 +17,7 @@ class PlannerPage extends PureComponent {
   constructor(){
     super()
     this.state = {
+      userId: 2,
       isAddModalOpen: false,
       plannerDay: null,
       daysItems: {
@@ -37,7 +38,7 @@ class PlannerPage extends PureComponent {
   // ***********************
   // fetch all items from user.id =2
   callItems = () => {
-    fetch("https://mod5-bullet-journal-api.herokuapp.com/users/2")
+    fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.state.userId}`)
     .then(resp=> resp.json())
     .then(data => {this.divideAllItems(data); console.log("calling data")} )
   }
@@ -117,6 +118,7 @@ class PlannerPage extends PureComponent {
           daysNotes={this.state.daysItems.notes}
           toggleAddModal={this.toggleAddModal}
           isAddModalOpen={this.state.isAddModalOpen}
+          userId={this.state.userId}
         />
         </View>
 
