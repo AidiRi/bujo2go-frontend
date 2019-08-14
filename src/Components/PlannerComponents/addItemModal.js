@@ -1,30 +1,34 @@
-import React, { useState} from 'react'
-import { Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native'
+import React, { PureComponent } from 'react'
+import { Text, TouchableHighlight, View, Alert, StyleSheet, Button, Modal} from 'react-native'
+// import Modal from "react-native-modal";
 
 
 // props={
 // isAddModalDislay,
 // toggleAddModal() }
-const AddItemModal = props => {
+class AddItemModal extends PureComponent{
 
-  return(
-    <View style={{marginTop: 22}}>
+  state = {
+    isModalVisible: false
+  }
 
-      {props.isAddModalOpen && <View style={{
-        backgroundColor: 'white',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        margin: '4em',
-        padding: '1em',
-        borderRadius: 5,
-      }}>
-        <Text>Add an item: </Text>
-        <Text onPress={() => props.toggleAddModal(false)}>close</Text>
-      </View>}
-    </View>
-  )
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+  };
+
+  render() {
+    if (!this.props.isAddModalOpen){
+    return(
+      <View style={{ flex: 1 }}>
+        <Button title="Show modal" onPress={this.toggleModal} />
+        <Modal visible={this.state.isModalVisible}>
+            <Text>Hello!</Text>
+
+        </Modal>
+      </View>
+    )
+  }
+  }
 }
 
 const styles = StyleSheet.create({
