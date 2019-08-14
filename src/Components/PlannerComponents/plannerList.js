@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
-  
+
 } from 'react-native'
 import Event from './event'
 import Note from './note'
@@ -78,14 +78,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'whitesmoke',
     width: '90%',
-    margin: 'auto'
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   ListStyle: {
     flex: 1,
     marginTop: 20,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '90%'
   },
   TouchableOpacityStyle: {
     position: 'absolute',
