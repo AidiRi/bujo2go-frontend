@@ -84,6 +84,9 @@ const styles = StyleSheet.create({
   ListStyle: {
     flex: 1,
     marginTop: 20,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '90%'
   },
   TouchableOpacityStyle: {
     position: 'absolute',
