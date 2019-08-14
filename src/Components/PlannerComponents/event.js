@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, FlatList } from 'react-native'
 
 // props={ title, status }
 const Event = props => {
+
+  const type = "events"
+
   const renderItem = ({ item }) => {
     return (
       <Text style={styles.row}>
@@ -25,7 +28,7 @@ const Event = props => {
           )
         }
       }}
-      keyExtractor={({ id }) => id }
+      keyExtractor={({ id }) => `${type}${id}` }
     />
 }
 

@@ -7,7 +7,7 @@ import DeleteButton from './PlannerListComponents/deleteButton'
 const Note = props => {
 
   const type = "notes"
-  
+
   const renderItem = ({ item }) => {
     return (
       <Text style={styles.row}>
@@ -27,7 +27,7 @@ const Note = props => {
             </View>
           )
       }}
-      keyExtractor={({ id }) => id }
+      keyExtractor={({ id }) => `${type}${id}` }
     />
 
 }

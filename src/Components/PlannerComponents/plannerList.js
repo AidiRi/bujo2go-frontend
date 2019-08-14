@@ -22,6 +22,7 @@ import AddItemModal from './addItemModal'
 // toggleAddModal(),
 // isAddModalOpen ,
 // userId
+// delete()
 // }
 
 class PlannerList extends PureComponent {
@@ -45,26 +46,18 @@ class PlannerList extends PureComponent {
   // }
 
   createEvents = events => {
-    return <Event events={events} delete={this.deleteItem}/>
+    return <Event events={events} delete={this.props.delete}/>
   }
 
   createTasks = tasks => {
-    return <Task tasks={tasks} delete={this.deleteItem}/>
+    return <Task tasks={tasks} delete={this.props.delete}/>
   }
 
   createNotes = notes => {
-    return <Note notes={notes} delete={this.deleteItem}/>
+    return <Note notes={notes} delete={this.props.delete}/>
   }
 
-// could put in ItemList.js when refactoring
-  deleteItem = (id, type ) => {
-    console.log(type, " item deleting with id of ", id)
-    fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
-      method: 'DELETE'
-    }).then(resp => resp.json())
 
-
-  }
 
   render(){
     return (

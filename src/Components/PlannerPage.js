@@ -32,6 +32,7 @@ class PlannerPage extends PureComponent {
     this.setState({
       ...this.state,
       plannerDay: date
+      // TESTING
     }, console.log("plannerDay change"))
   }
 
@@ -92,7 +93,33 @@ class PlannerPage extends PureComponent {
     })
   }
 
+// ***********************
 
+// deleting items from plannerList
+  deleteItem = (id, type ) => {
+    console.log(type, " item deleting with id of ", id)
+
+    // fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
+    //   method: 'DELETE'
+    // }).then(resp => resp.json())
+
+    this.deleteItemFromState(id, type)
+  }
+
+  deleteItemFromState = (id, type)=> {
+    const newItems = this.state.daysItems[type].filter( item => item.id !== id);
+
+    const stateType = null;
+
+    this.setState({
+      ...this.state,
+      daysItems: {
+        ...this.state.daysItems,
+        [type]: newItems
+      }
+    })
+    console.log("ITEM ID:", id, "ARRAY:", this.state.daysItems[type], "NEW ARRAY:", newItems)
+  }
 
   render() {
 
@@ -119,6 +146,7 @@ class PlannerPage extends PureComponent {
           toggleAddModal={this.toggleAddModal}
           isAddModalOpen={this.state.isAddModalOpen}
           userId={this.state.userId}
+          delete={this.deleteItem}
         />
         </View>
 
