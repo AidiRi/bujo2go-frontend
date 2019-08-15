@@ -126,23 +126,35 @@ class PlannerPage extends PureComponent {
   // **********************
 
   // Editing Items in plannerList
-  editItem = (id, type, content) => {
-    console.log(type, " item editing with id of ", id, "and content of", content)
+  editItem = (id, type, data) => {
+    console.log(type, " item SWITHING with id of:", id, "and data of:", data)
+    switch (type) {
+      case "notes":
+        this.fetchNotes(id, type, data)
+        break;
+      case "tasks":
+        this.fetchTasks(id, type, data)
+      case "events":
+        this.fetchEvents(id, type, data)
+      default:console.log("ERROR AT TYPE SWITCH")
 
-    // fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   method: 'PATCH',
-    //   body: JSON.stringify({
-    //     content: content
-    //   })
-    // }).then(resp => resp.json())
-    // .then(data => console.log(data))
-
+    }
   }
 
+  fetchNotes = (id, type, content) => {
+    console.log(type, " item FETCHING with id of ", id, "and content of", content)
+    fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'PATCH',
+      body: JSON.stringify({
+        content: content
+      })
+    }).then(resp => resp.json())
+    .then(data => console.log(data))
+  }
   editItemInState = (id, type, newContent) => {
 
 
