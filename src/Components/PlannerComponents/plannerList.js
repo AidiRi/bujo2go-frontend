@@ -3,13 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Platform,
-
 } from 'react-native'
-import Event from './event'
-import Note from './note'
-import Task from './task'
 import EmptyList from './EmptyList'
 import AddButton from './addButton'
 import AddItemModal from './addItemModal'
@@ -41,24 +35,23 @@ class PlannerList extends PureComponent {
   }
 
   // NOTE: REFACTORED to account for just one ListItem component
+  // inside a createItems function
 
-  createItems = (items, type) => {
-    return <ListItem items={items} type={type} delete={this.props.delete}/>
-  }
-  createEvents = events => {
-    // return <Event events={events} delete={this.props.delete}/>
-    return <ListItem items={events} type={"events"} delete={this.props.delete}/>
-  }
-
+  // createItems = (items, type) => {
+  //   return <ListItem items={items} type={type} delete={this.props.delete}/>
+  // }
+  // createEvents = events => {
+  //   // return <Event events={events} delete={this.props.delete}/>
+  //   return <ListItem items={events} type={"events"} delete={this.props.delete}/>
+  // }
   // createTasks = tasks => {
   //   // return <Task tasks={tasks} delete={this.props.delete}/>
   //   return <ListItem items={tasks} type={"tasks"} delete={this.props.delete}/>
   // }
-
-  createNotes = notes => {
-    // return <Note notes={notes} delete={this.props.delete}/>
-    return <ListItem items={notes} type={"notes"} delete={this.props.delete}/>
-  }
+  // createNotes = notes => {
+  //   // return <Note notes={notes} delete={this.props.delete}/>
+  //   return <ListItem items={notes} type={"notes"} delete={this.props.delete}/>
+  // }
 
 
 

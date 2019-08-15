@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList, Button } from 'react-native'
+import { View, Text, StyleSheet, FlatList } from 'react-native'
 import DeleteButton from './PlannerListComponents/deleteButton'
 // props={ content ,
 // delete()
@@ -7,14 +7,6 @@ import DeleteButton from './PlannerListComponents/deleteButton'
 const Note = props => {
 
   const type = "notes"
-
-  const renderItem = ({ item }) => {
-    return (
-      <Text style={styles.row}>
-        {item.text}
-      </Text>
-    )
-  }
 
     return <FlatList
       style={styles.MainContainer}

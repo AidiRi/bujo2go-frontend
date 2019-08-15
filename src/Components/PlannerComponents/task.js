@@ -7,14 +7,6 @@ const Task = props => {
 
   const type = "tasks"
 
-  const renderItem = ({ item }) => {
-    return (
-      <Text style={styles.row}>
-        {item.text}
-      </Text>
-    )
-  }
-
     return <FlatList
       style={styles.MainContainer}
       data={props.tasks}
@@ -37,9 +29,6 @@ const Task = props => {
       }}
       keyExtractor={({ id }) => `${type}${id}` }
     />
-
-
-
 }
 
 const styles = StyleSheet.create({

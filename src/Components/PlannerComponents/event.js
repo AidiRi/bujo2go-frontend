@@ -6,14 +6,6 @@ const Event = props => {
 
   const type = "events"
 
-  const renderItem = ({ item }) => {
-    return (
-      <Text style={styles.row}>
-        {item.text}
-      </Text>
-    )
-  }
-
     return <FlatList
       style={styles.MainContainer}
       data={props.events}
