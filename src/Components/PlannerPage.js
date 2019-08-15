@@ -8,7 +8,7 @@ import {
   Platform
   } from 'react-native'
 import Calendar from './PlannerComponents/calendar'
-import PlannerList from './PlannerComponents/plannerList'
+import PlannerList from './PlannerComponents/PlannerList'
 
 
 // props = { todaysDate , changeDateState()}
