@@ -153,10 +153,10 @@ const ItemIcon = props => {
 
 const styles = StyleSheet.create({
   Icon: {
-    height: "100%",
+    height: '100%',
     width: 30,
-    alignItems: "flex-start",
-    // backgroundColor: "blue",
+    alignItems: 'flex-start',
+    // backgroundColor: 'blue',
   }
 })
 

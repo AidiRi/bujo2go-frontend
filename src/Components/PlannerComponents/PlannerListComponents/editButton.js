@@ -1,26 +1,25 @@
-import React from 'react';
+import React from 'react'
 import { TouchableOpacity, Platform, StyleSheet, View} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-// props = {
-// delete()
-// id
-// type
-// }
-const DeleteButton = props => {
-
+const EditButton = props => {
   return (
-    <View style={styles.DeleteSpace}>
+    <View style={styles.EditSpace}>
       <TouchableOpacity
-        style={styles.DeleteButton}
+        style={styles.EditButton}
         activeOpacity={0.7}
-        onPress={()=> props.delete(props.id, props.type)}
+        onPress={()=> {
+          console.log("edit button pressed")
+        }
+
+          // props.delete(props.id, props.type)
+        }
         >
         <Ionicons
         name={
           Platform.OS === 'ios'
-            ? `ios-close`
-            : 'md-close'
+            ? `ios-create`
+            : 'md-create'
         }
         size={20}
         color='dodgerblue'
@@ -28,25 +27,24 @@ const DeleteButton = props => {
       </TouchableOpacity>
     </View>
   )
+
 }
 
-
 const styles= StyleSheet.create({
-  DeleteButton: {
-    // backgroundColor: 'darkblue',
+  EditButton: {
+    // backgroundColor: 'blue',
     width:20,
 
     alignItems: 'center',
     padding: 2,
     margin: 4,
     marginTop: 0,
-    justifyContent: 'flex-end',
-
+    justifyContent: 'flex-start',
   },
-  DeleteSpace: {
+  EditSpace: {
     height: '100%'
   }
+
 })
 
-
-export default DeleteButton;
+export default EditButton;
