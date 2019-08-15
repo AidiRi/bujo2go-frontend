@@ -32,6 +32,7 @@ class PlannerPage extends PureComponent {
     this.setState({
       ...this.state,
       plannerDay: date
+      // '2019-08-31'
       // TESTING
     }, console.log("plannerDay change"))
   }
