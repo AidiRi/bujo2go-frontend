@@ -112,7 +112,6 @@ class PlannerPage extends PureComponent {
   deleteItemFromState = (id, type)=> {
     const newItems = this.state.daysItems[type].filter( item => item.id !== id);
 
-    const stateType = null;
 
     this.setState({
       ...this.state,
@@ -122,6 +121,31 @@ class PlannerPage extends PureComponent {
       }
     })
     console.log("ITEM ID:", id, "ARRAY:", this.state.daysItems[type], "NEW ARRAY:", newItems)
+  }
+
+  // **********************
+
+  // Editing Items in plannerList
+  editItem = (id, type, content) => {
+    console.log(type, " item editing with id of ", id, "and content of", content)
+
+    // fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   method: 'PATCH',
+    //   body: JSON.stringify({
+    //     content: content
+    //   })
+    // }).then(resp => resp.json())
+    // .then(data => console.log(data))
+
+  }
+
+  editItemInState = (id, type, newContent) => {
+
+
   }
 
   render() {
@@ -150,6 +174,7 @@ class PlannerPage extends PureComponent {
           isAddModalOpen={this.state.isAddModalOpen}
           userId={this.state.userId}
           delete={this.deleteItem}
+          edit={this.editItem}
         />
         </View>
 

@@ -2,19 +2,21 @@ import React from 'react'
 import { TouchableOpacity, Platform, StyleSheet, View} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+// props = {
+// edit(),
+// type ,
+// id
+// }
+const content = "New Content!"
+
 const EditButton = props => {
   return (
     <View style={styles.EditSpace}>
       <TouchableOpacity
         style={styles.EditButton}
         activeOpacity={0.7}
-        onPress={()=> {
-          console.log("edit button pressed")
-        }
-
-          // props.delete(props.id, props.type)
-        }
-        >
+        onPress={()=> {props.edit(props.id, props.type, content)}}
+      >
         <Ionicons
         name={
           Platform.OS === 'ios'

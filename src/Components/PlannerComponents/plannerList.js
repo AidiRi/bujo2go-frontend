@@ -18,7 +18,8 @@ import EmptyList from './PlannerListComponents/emptyList'
 // toggleAddModal(),
 // isAddModalOpen ,
 // userId
-// delete()
+// delete() ,
+// edit()
 // }
 
 class PlannerList extends PureComponent {
@@ -38,7 +39,7 @@ class PlannerList extends PureComponent {
   // NOTE: REFACTORED to account for just one ListItem component
   // inside a createItems function
   createItems = (items, type) => {
-    return <ListItem items={items} type={type} delete={this.props.delete}/>
+    return <ListItem items={items} type={type} delete={this.props.delete} edit={this.props.edit}/>
   }
 
   render(){
