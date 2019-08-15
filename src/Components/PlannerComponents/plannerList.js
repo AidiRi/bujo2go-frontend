@@ -13,6 +13,7 @@ import Task from './task'
 import EmptyList from './EmptyList'
 import AddButton from './addButton'
 import AddItemModal from './addItemModal'
+import ListItem from './listItem'
 // Props ={ todaysDate,
 // displayDaysItems(),
 // daysNotes,
@@ -29,32 +30,34 @@ class PlannerList extends PureComponent {
 
   displayDaysItems = (notes, tasks, events) => {
     if (events && events.length > 0) {
-      return this.createEvents(events)
+      return this.createItems(events, "events")
     } else if (tasks && tasks.length > 0) {
-      return this.createTasks(tasks)
+      return this.createItems(tasks, "tasks")
     } else if ( notes && notes.length > 0 ){
-      return this.createNotes(notes)
+      return this.createItems(notes, "notes")
     } else if ( notes && events && tasks && notes.length===0 && events.length===0 && tasks.length===0){
       return <EmptyList/>
     }
   }
 
-  // NOTE: Trying to refactor to account for just one ListItem component
-  //        instead of multiple components for each type of item
-  // createItems = items => {
-  //   return <Item items={items} type={"note"}/>
+  // NOTE: REFACTORED to account for just one ListItem component
+
+  createItems = (items, type) => {
+    return <ListItem items={items} type={type} delete={this.props.delete}/>
+  }
+  createEvents = events => {
+    // return <Event events={events} delete={this.props.delete}/>
+    return <ListItem items={events} type={"events"} delete={this.props.delete}/>
+  }
+
+  // createTasks = tasks => {
+  //   // return <Task tasks={tasks} delete={this.props.delete}/>
+  //   return <ListItem items={tasks} type={"tasks"} delete={this.props.delete}/>
   // }
 
-  createEvents = events => {
-    return <Event events={events} delete={this.props.delete}/>
-  }
-
-  createTasks = tasks => {
-    return <Task tasks={tasks} delete={this.props.delete}/>
-  }
-
   createNotes = notes => {
-    return <Note notes={notes} delete={this.props.delete}/>
+    // return <Note notes={notes} delete={this.props.delete}/>
+    return <ListItem items={notes} type={"notes"} delete={this.props.delete}/>
   }
 
 
@@ -71,7 +74,7 @@ class PlannerList extends PureComponent {
         />
 
         <AddButton
-    
+
         />
 
       </View>

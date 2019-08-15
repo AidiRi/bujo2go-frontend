@@ -20,11 +20,16 @@ const Event = props => {
       renderItem={({item}) => {
         if (item.status === "open"){
           return (
-            <Text style={styles.row}> o {item.title} </Text>
+            <View style={styles.row}>
+              <Text style={styles.row}> o {item.title} </Text>
+            </View>
           )
         } else if ( item.status === "closed"){
           return(
-            <Text style={styles.row}> @ {item.title} </Text>
+            <View style={styles.row}>
+              <Text style={styles.row}> @ {item.title} </Text>
+            </View>
+
           )
         }
       }}
