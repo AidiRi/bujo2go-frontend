@@ -71,7 +71,7 @@ class PlannerList extends PureComponent {
         />
 
         <AddButton
-        toggleAddModal={this.props.toggleAddModal}
+    
         />
 
       </View>

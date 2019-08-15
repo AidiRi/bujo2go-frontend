@@ -10,7 +10,7 @@ import {
   Button
 } from 'react-native';
 import _ from 'lodash';
-import {ExpandableCalendar, AgendaList, CalendarProvider} from 'react-native-calendars';
+import {ExpandableCalendar, CalendarProvider} from 'react-native-calendars';
 
 // props ={ setPlannerDay() , todaysDate, plannerDate, reCallItems()}
 
@@ -64,21 +64,21 @@ class Calendar extends PureComponent{
     // console.warn('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
   }
 
-  buttonPressed() {
-    Alert.alert('show more');
-  }
-
-  itemPressed(id) {
-    Alert.alert(id);
-  }
-
-  renderEmptyItem() {
-    return (
-      <View style={styles.emptyItem}>
-        <Text style={styles.emptyItemText}>No Events Planned</Text>
-      </View>
-    );
-  }
+  // buttonPressed() {
+  //   Alert.alert('show more');
+  // }
+  //
+  // itemPressed(id) {
+  //   Alert.alert(id);
+  // }
+  //
+  // renderEmptyItem() {
+  //   return (
+  //     <View style={styles.emptyItem}>
+  //       <Text style={styles.emptyItemText}>No Events Planned</Text>
+  //     </View>
+  //   );
+  // }
 
   renderItem = ({item}) => {
     if (_.isEmpty(item)) {
