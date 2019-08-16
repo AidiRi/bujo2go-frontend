@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 // type ,
 // id
 // }
-const data = "New stuff!"
+const data = "I fixed it!"
 
 const EditButton = props => {
   return (

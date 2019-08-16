@@ -32,9 +32,9 @@ class PlannerPage extends PureComponent {
     this.setState({
       ...this.state,
       plannerDay:
-      // date
+      date
       // '2019-08-31'
-      '2019-08-08'
+      // '2019-08-08'
       // TESTING
     }, console.log("plannerDay change"))
   }
@@ -138,9 +138,11 @@ class PlannerPage extends PureComponent {
       case "tasks":
         dataName = "title"
         this.patchItemData(id, type, data, dataName)
+        break;
       case "events":
         dataName = "title"
         this.patchItemData(id, type, data, dataName)
+        break;
       default:console.log("ERROR AT TYPE SWITCH")
 
     }
