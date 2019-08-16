@@ -125,24 +125,29 @@ class PlannerPage extends PureComponent {
 
   // **********************
 
+  // TODO: figure out whether adding multiple addons would be crazyTalk code
   // Editing Items in plannerList
   editItem = (id, type, data) => {
     console.log(type, " item SWITHING with id of:", id, "and data of:", data)
+    // conditional fetching based on item type
     switch (type) {
       case "notes":
-        this.fetchNotes(id, type, data)
+        let dataName = "content"
+        this.patchItemData(id, type, data, dataName)
         break;
       case "tasks":
-        this.fetchTasks(id, type, data)
+        dataName = "title"
+        this.patchItemData(id, type, data, dataName)
       case "events":
-        this.fetchEvents(id, type, data)
+        dataName = "title"
+        this.patchItemData(id, type, data, dataName)
       default:console.log("ERROR AT TYPE SWITCH")
 
     }
   }
 
-  fetchNotes = (id, type, content) => {
-    console.log(type, " item FETCHING with id of ", id, "and content of", content)
+  patchItemData = (id, type, content, dataName) => {
+    console.log(type, " item PATCHING with id of ", id, "and content of", content)
     fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
       headers: {
         'Accept': 'application/json',
@@ -150,11 +155,28 @@ class PlannerPage extends PureComponent {
       },
       method: 'PATCH',
       body: JSON.stringify({
-        content: content
+        [dataName]: content
       })
     }).then(resp => resp.json())
     .then(data => console.log(data))
   }
+
+  patchTasks = (id, type, title) => {
+    console.log(type, " item PATCHING with id of ", id, "and content of", content)
+    fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'PATCH',
+      body: JSON.stringify({
+        title: title,
+      })
+    }).then(resp => resp.json())
+    .then(data => console.log(data))
+  }
+
+
   editItemInState = (id, type, newContent) => {
 
 

@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 // type ,
 // id
 // }
-const content = "New Content!"
+const data = "New stuff!"
 
 const EditButton = props => {
   return (
@@ -15,7 +15,7 @@ const EditButton = props => {
       <TouchableOpacity
         style={styles.EditButton}
         activeOpacity={0.7}
-        onPress={()=> {props.edit(props.id, props.type, content)}}
+        onPress={()=> {props.edit(props.id, props.type, data)}}
       >
         <Ionicons
         name={
