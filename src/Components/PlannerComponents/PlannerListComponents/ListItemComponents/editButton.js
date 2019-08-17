@@ -15,10 +15,10 @@ const EditButton = props => {
       <TouchableOpacity
         style={styles.EditButton}
         activeOpacity={0.7}
-        onPress={()=> { props.id ? props.setIsEditing(true): ( console.log("submiting"), console.log("null null") ) }}
+        onPress={()=> { props.isEditing === false ? props.setIsEditing(true) : ( props.edit(props.id, props.type, props.itemText), props.setIsEditing(false) ) }}
       >
         <Ionicons
-        name={ props.id ?
+        name={ props.isEditing === false ?
           (Platform.OS === 'ios'
             ? `ios-create`
             : 'md-create')
@@ -28,7 +28,7 @@ const EditButton = props => {
               : 'md-checkmark')
         }
         size={20}
-        color={props.id ? 'dodgerblue' : 'gray'}
+        color={props.isEditing === false ? 'dodgerblue' : 'gray'}
         />
       </TouchableOpacity>
     </View>
