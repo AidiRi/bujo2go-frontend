@@ -3,11 +3,11 @@ import { TouchableOpacity, Platform, StyleSheet, View} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 // props = {
-// edit(),
+// setIsEditing(),
 // type ,
 // id
 // }
-const data = "I fixed it!"
+const data = "check 3"
 
 const EditButton = props => {
   return (
@@ -15,16 +15,20 @@ const EditButton = props => {
       <TouchableOpacity
         style={styles.EditButton}
         activeOpacity={0.7}
-        onPress={()=> {props.edit(props.id, props.type, data)}}
+        onPress={()=> { props.id ? props.setIsEditing(true): ( console.log("submiting"), console.log("null null") ) }}
       >
         <Ionicons
-        name={
-          Platform.OS === 'ios'
+        name={ props.id ?
+          (Platform.OS === 'ios'
             ? `ios-create`
-            : 'md-create'
+            : 'md-create')
+            :
+            (Platform.OS === 'ios'
+              ? `ios-checkmark`
+              : 'md-checkmark')
         }
         size={20}
-        color='dodgerblue'
+        color={props.id ? 'dodgerblue' : 'gray'}
         />
       </TouchableOpacity>
     </View>
@@ -38,7 +42,7 @@ const styles= StyleSheet.create({
     width:20,
 
     alignItems: 'center',
-    padding: 2,
+    // padding: 2,
     margin: 4,
     marginTop: 0,
     justifyContent: 'flex-start',

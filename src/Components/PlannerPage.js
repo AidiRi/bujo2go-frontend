@@ -32,8 +32,8 @@ class PlannerPage extends PureComponent {
     this.setState({
       ...this.state,
       plannerDay:
-      date
-      // '2019-08-31'
+      // date
+      '2019-08-31'
       // '2019-08-08'
       // TESTING
     }, console.log("plannerDay change"))
@@ -160,28 +160,27 @@ class PlannerPage extends PureComponent {
         [dataName]: content
       })
     }).then(resp => resp.json())
-    .then(data => console.log(data))
-  }
-
-  patchTasks = (id, type, title) => {
-    console.log(type, " item PATCHING with id of ", id, "and content of", content)
-    fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'PATCH',
-      body: JSON.stringify({
-        title: title,
-      })
-    }).then(resp => resp.json())
-    .then(data => console.log(data))
+    .then(data => this.editItemInState(type, data))
   }
 
 
-  editItemInState = (id, type, newContent) => {
+  editItemInState = (type, patchedItem) => {
+    console.log(type, " STATE EDITING with id of ", patchedItem.id, "and data of", patchedItem)
 
+    let newItems = this.state.daysItems[type].map(item => {
+      if (item.id === patchedItem.id) {
+        return patchedItem
+      }
+      return item
+    })
 
+    this.setState({
+      ...this.state,
+      daysItems: {
+        ...this.state.daysItems,
+        [type]: newItems
+      }
+    })
   }
 
   render() {
