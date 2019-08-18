@@ -11,12 +11,13 @@ import {
 } from 'react-native'
 import ItemIcon from './PlannerListComponents/ListItemComponents/itemIcon'
 import { Ionicons } from '@expo/vector-icons';
-// add conditonal name with md-create & ios-create
-// onPress - will use createItem function, still need to pass it down
 
 // props{
-//
+// setItemAdding()
+// itemAdding
+// create()
 // }
+
 class AddItemModal extends Component {
 
   constructor(){
@@ -32,16 +33,6 @@ class AddItemModal extends Component {
     })
   }
 
-  dataName = ""
-
-  componentDidMount(){
-    if(this.props.itemAdding !== "events"){
-      this.dataName="title"
-    } else{
-      this.dataName="content"
-    }
-  }
-
   render(){
     return(
       <View style={styles.Row}>
@@ -50,7 +41,9 @@ class AddItemModal extends Component {
           autoFocus={true}
           style={styles.TextInput}
           onChangeText={text=> this.setText(text)}
-          onSubmitEditing={() => console.log(this.state.text, this.dataName)}/>
+          onSubmitEditing={() => {
+            this.props.create(this.props.itemAdding, this.state.text)
+            console.log(this.state.text); this.props.setItemAdding(null)}}/>
         <Ionicons
           style={styles.Icon}
           name={Platform.OS === 'ios'
@@ -58,7 +51,9 @@ class AddItemModal extends Component {
             : 'md-add'}
           size={20}
           color={'dodgerblue'}
-          onPress={()=> console.log(this.state.text)}
+          onPress={()=> {
+            this.props.create(this.props.itemAdding, this.state.text)
+            console.log(this.state.text); this.props.setItemAdding(null)}}
           />
       </View>
 

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import {
   View,
   Text,
@@ -10,26 +10,27 @@ import ListItem from './PlannerListComponents/ListItem'
 import EmptyList from './PlannerListComponents/emptyList'
 import ItemIcon from './PlannerListComponents/ListItemComponents/itemIcon'
 
-// Props ={ todaysDate,
-// displayDaysItems(),
-// daysNotes,
-// daysTasks,
-// daysEvents,
-// addButtonHandler(),
-// toggleAddModal(),
-// isAddModalOpen ,
+// Props ={ todaysDate
+// displayDaysItems()
+// daysNotes
+// daysTasks
+// daysEvents
+// addButtonHandler()
+// toggleAddModal()
+// isAddModalOpen
 // userId
-// delete() ,
+// delete()
 // edit()
+// create()
 // }
 
-class PlannerList extends PureComponent {
+class PlannerList extends Component {
 
   constructor(){
     super()
     this.state={
-      itemAdding: "tasks"
-      // TESTING
+      itemAdding: null
+
     }
   }
 
@@ -54,7 +55,9 @@ class PlannerList extends PureComponent {
   displayCreateModal = () => {
     if (this.state.itemAdding){
       return <AddItemModal
-      itemAdding={this.state.itemAdding}
+        itemAdding={this.state.itemAdding}
+        setItemAdding={this.setItemAdding}
+        create={this.props.create}
       />
     }
   }

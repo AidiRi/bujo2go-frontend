@@ -49,7 +49,7 @@ const AddButton = props => {
           <ActionButton.Item
             buttonColor='#3498db'
             title="New Event"
-            onPress={() => {console.log("event tapped")}}
+            onPress={() => props.setItemAdding("events")}
           >
             <Ionicons
               name={Platform.OS === 'ios'
@@ -61,7 +61,7 @@ const AddButton = props => {
           <ActionButton.Item
             buttonColor='#1abc9c'
             title="New Note"
-            onPress={() => {console.log("note tapped")}}
+            onPress={() => props.setItemAdding("notes")}
           >
             <Ionicons
               name={Platform.OS === 'ios'

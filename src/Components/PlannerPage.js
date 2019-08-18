@@ -68,7 +68,7 @@ class PlannerPage extends PureComponent {
         if (item.date && item.date === this.state.plannerDay){
           itemsArray.push(item)
         } else if ( item.datetime && item.datetime.split('T')[0] === this.state.plannerDay){
-          itemsArry.push(item)
+          itemsArray.push(item)
         }
       })
       return itemsArray
@@ -182,27 +182,81 @@ class PlannerPage extends PureComponent {
       }
     })
   }
-// **********************
 
-  // Create new item
-  createItem = (type, content, dataName) => {
-    switch (type) {
-      case "events":
-        this.postEvent(type, content, dataName)
-        break;
-      case "tasks":
-        this.postTask(type, content, dataName)
-        break;
-      case "notes":
-        this.postNotes(type, content, dataName)
-        break;
-      default:
-        console.log("Error at createItem switch")
+
+  // **********************
+
+    // Create new item
+
+    // attrs to include later: collection_id, hour,
+    createItem = (type, content, important, time) => {
+      switch (type) {
+        case "events":
+          console.log("creating event")
+          // this.postItem(type, content, null, time)
+          break;
+        case "tasks":
+        console.log("creating task")
+          // this.postItem(type, content, important)
+          break;
+        case "notes":
+        console.log("creating note")
+          // this.postItem(type, content)
+          break;
+        default:
+          console.log("Error at createItem switch")
+      }
+
     }
 
-  }
+    postItem = (type, content, important, time) => {
+
+      const  itemBody = this.itemBody(type, content, important, time)
+
+      fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/`, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(itemBody)
+      })
+      .then(resp => resp.json())
+      .then(data => console.log(data))
+    }
 
 
+    itemBody = (type, content, important, time)=> {
+      switch (type) {
+        case "tasks":
+        return {
+          title: content,
+          status: "open",
+          important: false,
+          date: this.state.plannerDay,
+          collection_id: null
+        }
+          break;
+        case "events":
+        return {
+          title: content,
+          status: "open",
+          dateTime: `${this.state.plannerDay} 00:00`,
+          duration: null,
+          hour: null
+        }
+          break;
+        case "notes":
+        return {
+          title: content,
+          status: "open",
+          date: this.state.plannerDay,
+          collection_id: null
+        }
+          break;
+        default:
+      }
+    }
 
   render() {
 
@@ -231,6 +285,7 @@ class PlannerPage extends PureComponent {
           userId={this.state.userId}
           delete={this.deleteItem}
           edit={this.editItem}
+          create={this.createItem}
         />
         </View>
 
