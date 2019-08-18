@@ -182,6 +182,27 @@ class PlannerPage extends PureComponent {
       }
     })
   }
+// **********************
+
+  // Create new item
+  createItem = (type, content, dataName) => {
+    switch (type) {
+      case "events":
+        this.postEvent(type, content, dataName)
+        break;
+      case "tasks":
+        this.postTask(type, content, dataName)
+        break;
+      case "notes":
+        this.postNotes(type, content, dataName)
+        break;
+      default:
+        console.log("Error at createItem switch")
+    }
+
+  }
+
+
 
   render() {
 

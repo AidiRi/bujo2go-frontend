@@ -10,7 +10,10 @@ import { Ionicons } from '@expo/vector-icons';
 import ActionButton from 'react-native-action-button';
 
 
-// props={ content }
+// props={
+// content ,
+// setItemAdding()
+// }
 const AddButton = props => {
 
     // return (
@@ -35,7 +38,7 @@ const AddButton = props => {
           <ActionButton.Item
             buttonColor='#9b59b6'
             title="New Task"
-            onPress={() => {console.log("tasks tapped!")}}
+            onPress={() => props.setItemAdding("tasks")}
           >
             <Ionicons
               name={Platform.OS === 'ios'
