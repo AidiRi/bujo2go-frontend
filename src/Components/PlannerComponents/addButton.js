@@ -31,30 +31,44 @@ const AddButton = props => {
     // )
 
     return (
-      <View style={{flex:1, backgroundColor: '#f3f3f3'}}>
-        {/* Rest of the app comes ABOVE the action button component !*/}
         <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-            <Ionicons name={Platform.OS === 'ios'
-              ? `ios-checkbox-outline`
-              : 'md-checkbox-outline'} style={styles.actionButtonIcon} />
+          <ActionButton.Item
+            buttonColor='#9b59b6'
+            title="New Task"
+            onPress={() => {console.log("tasks tapped!")}}
+          >
+            <Ionicons
+              name={Platform.OS === 'ios'
+                ? `ios-checkbox-outline`
+                : 'md-checkbox-outline'}
+              style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="New Event" onPress={() => {}}>
-            <Ionicons name={
-              Platform.OS === 'ios'
+          <ActionButton.Item
+            buttonColor='#3498db'
+            title="New Event"
+            onPress={() => {console.log("event tapped")}}
+          >
+            <Ionicons
+              name={Platform.OS === 'ios'
                 ? `ios-radio-button-off`
                 : 'md-radio-button-off'
-            } style={styles.actionButtonIcon} />
+              }
+              style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title="New Note" onPress={() => {}}>
-            <Ionicons name={
-              Platform.OS === 'ios'
+          <ActionButton.Item
+            buttonColor='#1abc9c'
+            title="New Note"
+            onPress={() => {console.log("note tapped")}}
+          >
+            <Ionicons
+              name={Platform.OS === 'ios'
                 ? `ios-remove`
                 : 'md-remove'
-            } style={styles.actionButtonIcon} />
+              }
+              style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
-      </View>
+
     );
 }
 

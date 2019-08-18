@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TextInput
 } from 'react-native'
 import AddButton from './addButton'
 import AddItemModal from './addItemModal'
@@ -46,12 +47,15 @@ class PlannerList extends PureComponent {
     return (
       <View style={styles.PlannerStyle}>
         <View style={styles.ListStyle}>
-        {this.displayDaysItems(this.props.daysNotes, this.props.daysTasks, this.props.daysEvents)}
+        <View style={styles.Row}>
+          <TextInput autoFocus={true}/>
+        </View>
+          {this.displayDaysItems(this.props.daysNotes, this.props.daysTasks, this.props.daysEvents)}
+
+
         </View>
 
-        <AddItemModal
 
-        />
 
         <AddButton
 
@@ -94,10 +98,14 @@ const styles = StyleSheet.create({
     height: 50,
     //backgroundColor:'black'
   },
-  row: {
-    padding: 15,
+  Row: {
+    flexDirection: "row",
     marginBottom: 5,
-    backgroundColor: 'skyblue',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 2,
+    alignItems: "center",
+    justifyContent: "center"
   },
 });
 

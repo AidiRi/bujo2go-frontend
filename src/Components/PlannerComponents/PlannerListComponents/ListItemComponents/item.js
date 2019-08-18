@@ -27,7 +27,6 @@ class Item extends Component {
 
   setIsEditing = boolean => {
     this.setState({
-      ...this.state,
       isEditing: boolean
     })
     console.log("isEditing change")
@@ -35,14 +34,14 @@ class Item extends Component {
 
   setItemText = text => {
     this.setState({
-      ...this.state,
       itemText: text
     })
   }
 
   componentDidMount(){
     this.props.item.status ?
-    this.setItemText(this.props.item.title) : this.setItemText(this.props.item.content)
+    this.setItemText(this.props.item.title) : this.setItemText(this.props.item.content);
+    // this.props.isOpen ? this.setIsEditing(true) : null;
   }
   // onprops.edit(props.id, props.type, data)
 
