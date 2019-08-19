@@ -1,5 +1,5 @@
 // TODO: refactor attributes; passing items to edit() is ridonculous
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import DeleteButton from './deleteButton'
 import ItemIcon from './itemIcon'
@@ -11,7 +11,7 @@ import EditButton from './editButton'
 // delete() ,
 // edit() ,
 // }
-class Item extends Component {
+class Item extends PureComponent {
 
   // events = { title, status }
   // tasks = { title, status, important }
@@ -24,6 +24,7 @@ class Item extends Component {
     }
   }
 
+  // type = "";
 
   setIsEditing = boolean => {
     this.setState({
@@ -42,8 +43,19 @@ class Item extends Component {
     this.props.item.status ?
     this.setItemText(this.props.item.title) : this.setItemText(this.props.item.content);
     // this.props.isOpen ? this.setIsEditing(true) : null;
+
+    // this.setType()
   }
-  // onprops.edit(props.id, props.type, data)
+
+  // setType = () => {
+  //   if ( this.props.item.important ) {
+  //     type = "tasks"
+  //   } else if ( this.props.item.duration ) {
+  //     type = "events"
+  //   } else if ( this.props.item.content ) {
+  //     type = "notes"
+  //   }
+  // }
 
   render(){
     if ( this.props.item.status ){

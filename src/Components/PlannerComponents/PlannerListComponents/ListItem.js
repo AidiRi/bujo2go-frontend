@@ -14,8 +14,8 @@ import Item from './ListItemComponents/item'
     return <FlatList
       style={styles.MainContainer}
       data={props.items}
-      renderItem={({item}) => <Item item={item} delete={props.delete} edit={props.edit}/> }
-      keyExtractor={({ id }) => `${props.type}${id}` }
+      renderItem={({item}) => <Item item={item} delete={props.delete} edit={props.edit} type={item.item_type}/> }
+      keyExtractor={( item ) => `${item.item_type}${item.id}` }
     />
 
 }

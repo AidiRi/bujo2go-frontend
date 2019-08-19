@@ -35,21 +35,37 @@ class PlannerList extends Component {
   }
 
   displayDaysItems = (notes, tasks, events) => {
+    let allItems = []
     if (events && events.length > 0) {
-      return this.displayItems(events, "events")
-    } else if (tasks && tasks.length > 0) {
-      return this.displayItems(tasks, "tasks")
-    } else if ( notes && notes.length > 0 ){
-      return this.displayItems(notes, "notes")
-    } else if ( notes && events && tasks && notes.length===0 && events.length===0 && tasks.length===0){
+      events.forEach(event => {
+        allItems.push(event)
+      })
+      // return this.displayItems(events, "events")
+    }
+   if (tasks && tasks.length > 0) {
+      tasks.forEach(task => {
+        allItems.push(task)
+      })
+      // return this.displayItems(tasks, "tasks")
+    }
+    if ( notes && notes.length > 0 ){
+      notes.forEach(note => {
+        allItems.push(note)
+      })
+      // return this.displayItems(notes, "notes")
+    }
+    if ( notes && events && tasks && notes.length===0 && events.length===0 && tasks.length===0){
       return <EmptyList/>
+    } else {
+      return this.displayItems(allItems)
+      // console.log("all items:", allItems)
     }
   }
 
   // NOTE: REFACTORED to account for just one ListItem component
   // inside a displayItems function
-  displayItems = (items, type) => {
-    return <ListItem items={items} type={type} delete={this.props.delete} edit={this.props.edit}/>
+  displayItems = items => {
+    return <ListItem items={items} delete={this.props.delete} edit={this.props.edit}/>
   }
 
   displayCreateModal = () => {

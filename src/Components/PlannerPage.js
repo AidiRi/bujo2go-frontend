@@ -102,9 +102,9 @@ class PlannerPage extends PureComponent {
   deleteItem = (id, type ) => {
     console.log(type, " item deleting with id of ", id)
 
-    // fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
-    //   method: 'DELETE'
-    // }).then(resp => resp.json())
+    fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
+      method: 'DELETE'
+    })
 
     this.deleteItemFromState(id, type)
   }
@@ -120,7 +120,7 @@ class PlannerPage extends PureComponent {
         [type]: newItems
       }
     })
-    console.log("ITEM ID:", id, "ARRAY:", this.state.daysItems[type], "NEW ARRAY:", newItems)
+    // console.log("ITEM ID:", id, "ARRAY:", this.state.daysItems[type], "NEW ARRAY:", newItems)
   }
 
   // **********************
@@ -211,7 +211,8 @@ class PlannerPage extends PureComponent {
 
     postItem = (type, content, important, time) => {
 
-      const  itemBody = this.itemBody(type, content, important, time)
+      const  itemBody = this.setItemBody(type, content, important, time)
+      console.log("itemBody: ", itemBody)
 
       fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/`, {
         headers: {
@@ -222,20 +223,21 @@ class PlannerPage extends PureComponent {
         body: JSON.stringify(itemBody)
       })
       .then(resp => resp.json())
-      .then(data => this.displayNewItem(type, data))
+      .then(data =>{ this.displayNewItem(type, data); console.log("fetch data:", data)})
     }
 
 
-    itemBody = (type, content, important, time)=> {
+    setItemBody = (type, content, important, time)=> {
       switch (type) {
         case "tasks":
         return {
           title: content,
           status: "open",
-          important: false,
+          important: true,
           date: `${this.state.plannerDay}`,
           collection_id: null,
-          user_id: this.state.userId
+          user_id: this.state.userId,
+          item_type: "tasks",
         }
           break;
         case "events":
@@ -245,7 +247,8 @@ class PlannerPage extends PureComponent {
           datetime: `${this.state.plannerDay} 00:00`,
           duration: null,
           hour: null,
-          user_id: this.state.userId
+          user_id: this.state.userId,
+          item_type: "events",
         }
           break;
         case "notes":
@@ -254,7 +257,8 @@ class PlannerPage extends PureComponent {
           status: "open",
           date: `${this.state.plannerDay}`,
           collection_id: null,
-          user_id: this.state.userId
+          user_id: this.state.userId,
+          item_type: "notes",
         }
           break;
         default:
@@ -292,7 +296,6 @@ class PlannerPage extends PureComponent {
         >
         <PlannerList
           todaysDate={this.props.todaysDate}
-
           daysEvents={this.state.daysItems.events}
           daysTasks={this.state.daysItems.tasks}
           daysNotes={this.state.daysItems.notes}
