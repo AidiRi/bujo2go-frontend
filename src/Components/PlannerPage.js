@@ -193,15 +193,15 @@ class PlannerPage extends PureComponent {
       switch (type) {
         case "events":
           console.log("creating event")
-          // this.postItem(type, content, null, time)
+          this.postItem(type, content, null, time)
           break;
         case "tasks":
         console.log("creating task")
-          // this.postItem(type, content, important)
+          this.postItem(type, content, important)
           break;
         case "notes":
         console.log("creating note")
-          // this.postItem(type, content)
+          this.postItem(type, content)
           break;
         default:
           console.log("Error at createItem switch")
@@ -222,7 +222,7 @@ class PlannerPage extends PureComponent {
         body: JSON.stringify(itemBody)
       })
       .then(resp => resp.json())
-      .then(data => console.log(data))
+      .then(data => this.displayNewItem(type, data))
     }
 
 
@@ -233,29 +233,45 @@ class PlannerPage extends PureComponent {
           title: content,
           status: "open",
           important: false,
-          date: this.state.plannerDay,
-          collection_id: null
+          date: `${this.state.plannerDay}`,
+          collection_id: null,
+          user_id: this.state.userId
         }
           break;
         case "events":
         return {
           title: content,
           status: "open",
-          dateTime: `${this.state.plannerDay} 00:00`,
+          datetime: `${this.state.plannerDay} 00:00`,
           duration: null,
-          hour: null
+          hour: null,
+          user_id: this.state.userId
         }
           break;
         case "notes":
         return {
-          title: content,
+          content: content,
           status: "open",
-          date: this.state.plannerDay,
-          collection_id: null
+          date: `${this.state.plannerDay}`,
+          collection_id: null,
+          user_id: this.state.userId
         }
           break;
         default:
       }
+    }
+
+    displayNewItem = (type, data) => {
+      this.setState({
+        ...this.state,
+        daysItems: {
+          ...this.state.daysItems,
+          [type]: {
+            ...this.state.daysItems[type],
+            data
+          }
+        }
+      })
     }
 
   render() {
@@ -276,7 +292,7 @@ class PlannerPage extends PureComponent {
         >
         <PlannerList
           todaysDate={this.props.todaysDate}
-          displayDaysItems={this.displayDaysItems}
+
           daysEvents={this.state.daysItems.events}
           daysTasks={this.state.daysItems.tasks}
           daysNotes={this.state.daysItems.notes}
@@ -312,6 +328,7 @@ class PlannerPage extends PureComponent {
   //     console.log("daysItems: ", prevState.daysItems, this.state.daysItems)
   //     // this.callItems()
   //   }
+  //   console.log("todays state:", this.state.daysItems)
   // }
 }
 
