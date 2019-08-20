@@ -70,7 +70,10 @@ class Item extends PureComponent {
             isEditing={this.state.isEditing}
             setIsEditing={this.setIsEditing}
             />
-            <DeleteButton delete={this.props.delete} id={this.props.item.id} type={this.props.type}/>
+            <DeleteButton
+              delete={this.props.delete}
+              id={this.props.item.id}
+              type={this.props.type}/>
           </View>
         )
       } else {
@@ -101,7 +104,7 @@ class Item extends PureComponent {
         if (this.state.isEditing === false ){
         return(
           <View style={styles.Row}>
-            <ItemIcon type={this.props.type}/>
+            <ItemIcon type={this.props.type} />
             <Text style={styles.ItemText}> {this.state.itemText}</Text>
             <EditButton
               isEditing={this.state.isEditing}
@@ -109,7 +112,8 @@ class Item extends PureComponent {
               />
             <DeleteButton
               delete={this.props.delete}
-              id={this.props.item.id} type={String(this.props.type)}/>
+              id={this.props.item.id}
+              type={this.props.type}/>
           </View>
         )
       } else {
@@ -122,8 +126,8 @@ class Item extends PureComponent {
               id={this.props.item.id} type={String(this.props.type)}
               itemText={this.state.itemText}
               autoFocus={true}
-              onChangeText={text => this.setItemText(text)}
-              onSubmitEditing={()=>{this.setIsEditing(false); this.props.edit(this.props.item.id, this.props.type, this.state.itemText); console.log("Submitting edit with", itemText)}}
+              onChangeText={text => {this.setItemText(text); console.log(text)}}
+              onSubmitEditing={()=>{this.setIsEditing(false); this.props.edit(this.props.item.id, this.props.type, this.state.itemText); console.log("Submitting edit with", this.state.itemText)}}
               setItemText={this.setItemText}
             />
             <EditButton

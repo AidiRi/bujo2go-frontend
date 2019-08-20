@@ -76,7 +76,6 @@ class PlannerPage extends PureComponent {
 
     setTodaysItemsState = (notes, tasks, events) => {
       this.setState({
-        ...this.state,
         daysItems: {
           notes: notes,
           tasks: tasks,
@@ -91,7 +90,6 @@ class PlannerPage extends PureComponent {
 
   toggleAddModal = boolean => {
     this.setState({
-      ...this.state,
       isAddModalOpen: boolean
     })
   }
@@ -128,7 +126,7 @@ class PlannerPage extends PureComponent {
   // TODO: figure out whether adding multiple addons would be crazyTalk code
   // Editing Items in plannerList
   editItem = (id, type, data) => {
-    console.log(type, " item SWITHING with id of:", id, "and data of:", data)
+    console.log(type, " item SWITCHING with id of:", id, "and data of:", data)
     // conditional fetching based on item type
     switch (type) {
       case "notes":
@@ -223,7 +221,7 @@ class PlannerPage extends PureComponent {
         body: JSON.stringify(itemBody)
       })
       .then(resp => resp.json())
-      .then(data =>{ this.displayNewItem(type, data); console.log("fetch data:", data)})
+      .then(data =>{  console.log("POST fetch data:", data); this.displayNewItem(type, data);})
     }
 
 
@@ -266,17 +264,29 @@ class PlannerPage extends PureComponent {
     }
 
     displayNewItem = (type, data) => {
+      console.log("Setting state with new", type,": ", data)
+
+      let newItemsArray = this.state.daysItems[type].push(data);
+
       this.setState({
         ...this.state,
         daysItems: {
           ...this.state.daysItems,
-          [type]: {
-            ...this.state.daysItems[type],
-            data
-          }
+          [type]: newItemsArray
         }
-      })
+      }, console.log("Setting State with new array of ", type, ": ", newItemsArray))
     }
+
+    // *******************
+    // change open/close status
+
+    changeStatus = () => {
+      
+
+    }
+
+// ***************************************
+
 
   render() {
 
