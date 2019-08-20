@@ -3,12 +3,14 @@ import {
   View,
   Text,
   StyleSheet,
+  KeyboardAvoidingView
 } from 'react-native'
 import AddButton from './addButton'
 import AddItemModal from './addItemModal'
 import ListItem from './PlannerListComponents/ListItem'
 import EmptyList from './PlannerListComponents/emptyList'
 import ItemIcon from './PlannerListComponents/ListItemComponents/itemIcon'
+
 
 // Props ={ todaysDate
 // displayDaysItems()
@@ -93,13 +95,13 @@ class PlannerList extends Component {
   render(){
     return (
       <View style={styles.PlannerStyle}>
-        <View style={styles.ListStyle}>
+        <KeyboardAvoidingView style={styles.ListStyle} behavior="position" enabled>
 
           {this.displayCreateModal()}
 
           {this.displayDaysItems(this.props.daysNotes, this.props.daysTasks, this.props.daysEvents)}
 
-        </View>
+        </KeyboardAvoidingView>
 
 
 
