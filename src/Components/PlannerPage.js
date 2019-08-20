@@ -34,7 +34,7 @@ class PlannerPage extends PureComponent {
       plannerDay:
       date
       // '2019-08-31'
-      // '2019-08-08'
+      // '2019-08-19'
       // TESTING
     }, console.log("plannerDay change"))
   }
@@ -210,6 +210,11 @@ class PlannerPage extends PureComponent {
     postItem = (type, content, important, time) => {
 
       const  itemBody = this.setItemBody(type, content, important, time)
+      console.log();    console.log()
+      console.log(this.state.daysItems)
+      console.log()
+      console.log()
+
       console.log("itemBody: ", itemBody)
 
       fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/`, {
@@ -266,7 +271,8 @@ class PlannerPage extends PureComponent {
     displayNewItem = (type, data) => {
       console.log("Setting state with new", type,": ", data)
 
-      let newItemsArray = this.state.daysItems[type].push(data);
+      let newItemsArray = this.state.daysItems[type].slice();
+      newItemsArray.push(data)
 
       this.setState({
         ...this.state,
