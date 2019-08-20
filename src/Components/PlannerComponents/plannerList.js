@@ -9,6 +9,7 @@ import AddItemModal from './addItemModal'
 import ListItem from './PlannerListComponents/ListItem'
 import EmptyList from './PlannerListComponents/emptyList'
 import ItemIcon from './PlannerListComponents/ListItemComponents/itemIcon'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Props ={ todaysDate
 // displayDaysItems()
@@ -93,13 +94,13 @@ class PlannerList extends Component {
   render(){
     return (
       <View style={styles.PlannerStyle}>
-        <View style={styles.ListStyle}>
+        <KeyboardAwareScrollView style={styles.ListStyle} resetScrollToCoords={{x:0, y:0}} enableOnAndroid={true} extraScrollHeight={80}>
 
           {this.displayCreateModal()}
 
           {this.displayDaysItems(this.props.daysNotes, this.props.daysTasks, this.props.daysEvents)}
 
-        </View>
+        </KeyboardAwareScrollView>
 
 
 
