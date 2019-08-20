@@ -23,7 +23,7 @@ const DeleteButton = props => {
             : 'md-close'
         }
         size={20}
-        color='dodgerblue'
+        color='#8fe3de'
         />
       </TouchableOpacity>
     </View>

@@ -29,7 +29,7 @@ const ItemIcon = props => {
                 : 'md-checkbox-outline'
             }
             size={20}
-            color='dodgerblue'
+            color='lightseagreen'
             onPress={() => {
               console.log("pressed open task with id: ", props.id, " and status of: ", props.status);
               props.changeStatus(props.type, props.id, "closed")
@@ -48,7 +48,7 @@ const ItemIcon = props => {
               : 'md-checkbox'
           }
           size={20}
-          color='dodgerblue'
+          color='lightseagreen'
           onPress={() => {
             console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
             props.changeStatus(props.type, props.id, "open")
@@ -67,7 +67,7 @@ const ItemIcon = props => {
                 : 'md-checkbox-outline'
             }
             size={20}
-            color='dodgerblue'
+            color='lightseagreen'
             />
           )
           break;
@@ -88,7 +88,7 @@ const ItemIcon = props => {
                 : 'md-radio-button-off'
             }
             size={20}
-            color='dodgerblue'
+            color='lightseagreen'
             onPress={() => {
               console.log("pressed open event with id: ", props.id, " and status of: ", props.status);
               props.changeStatus(props.type, props.id, "closed")
@@ -107,7 +107,7 @@ const ItemIcon = props => {
               : 'md-radio-button-on'
           }
           size={20}
-          color='dodgerblue'
+          color='lightseagreen'
           onPress={() => {
             console.log("pressed closed event with id: ", props.id, " and status of: ", props.status);
             props.changeStatus(props.type, props.id, "open")
@@ -126,7 +126,7 @@ const ItemIcon = props => {
                 : 'md-radio-button-off'
             }
             size={20}
-            color='dodgerblue'
+            color='lightseagreen'
             />
           )
           break;
@@ -145,7 +145,7 @@ const ItemIcon = props => {
             : 'md-remove'
         }
         size={20}
-        color='dodgerblue'
+        color='lightseagreen'
         />
       )
       break;
@@ -161,7 +161,7 @@ const ItemIcon = props => {
             : 'md-paw'
         }
         size={20}
-        color='dodgerblue'
+        color='lightseagreen'
         />
       )
     break;
