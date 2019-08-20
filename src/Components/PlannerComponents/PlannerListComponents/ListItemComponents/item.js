@@ -62,13 +62,18 @@ class Item extends PureComponent {
       if (this.state.isEditing === false ){
         return (
           <View style={styles.Row}>
-            <ItemIcon type={this.props.type} status={this.props.item.status}/>
+            <ItemIcon
+              type={this.props.type}
+              status={this.props.item.status}
+              id={this.props.item.id}
+              changeStatus={this.props.changeStatus}
+            />
             <Text style={styles.ItemText}>
               {this.state.itemText}
             </Text>
             <EditButton
-            isEditing={this.state.isEditing}
-            setIsEditing={this.setIsEditing}
+              isEditing={this.state.isEditing}
+              setIsEditing={this.setIsEditing}
             />
             <DeleteButton
               delete={this.props.delete}
@@ -79,7 +84,8 @@ class Item extends PureComponent {
       } else {
         return (
           <View style={styles.Row}>
-            <ItemIcon type={this.props.type} status={this.props.item.status}/>
+            <ItemIcon
+              type={this.props.type}  status={this.props.item.status}/>
             <TextInput
               style={styles.ItemText}
               value={this.state.itemText}
@@ -104,7 +110,9 @@ class Item extends PureComponent {
         if (this.state.isEditing === false ){
         return(
           <View style={styles.Row}>
-            <ItemIcon type={this.props.type} />
+            <ItemIcon
+              type={this.props.type}
+            />
             <Text style={styles.ItemText}> {this.state.itemText}</Text>
             <EditButton
               isEditing={this.state.isEditing}

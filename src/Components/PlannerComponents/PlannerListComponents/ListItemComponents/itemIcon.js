@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 // props = {
 // type ,
 //  status (conditionally)
+// id
 // }
 
 
@@ -29,6 +30,10 @@ const ItemIcon = props => {
             }
             size={20}
             color='dodgerblue'
+            onPress={() => {
+              console.log("pressed open task with id: ", props.id, " and status of: ", props.status);
+              props.changeStatus(props.type, props.id, "closed")
+             }}
             />
           )
           break;
@@ -44,6 +49,10 @@ const ItemIcon = props => {
           }
           size={20}
           color='dodgerblue'
+          onPress={() => {
+            console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
+            props.changeStatus(props.type, props.id, "open")
+          }}
           />
         )
         break;
@@ -80,6 +89,10 @@ const ItemIcon = props => {
             }
             size={20}
             color='dodgerblue'
+            onPress={() => {
+              console.log("pressed open event with id: ", props.id, " and status of: ", props.status);
+              props.changeStatus(props.type, props.id, "closed")
+             }}
             />
           )
           break;
@@ -95,6 +108,10 @@ const ItemIcon = props => {
           }
           size={20}
           color='dodgerblue'
+          onPress={() => {
+            console.log("pressed closed event with id: ", props.id, " and status of: ", props.status);
+            props.changeStatus(props.type, props.id, "open")
+          }}
           />
         )
         break;

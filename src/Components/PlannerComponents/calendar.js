@@ -114,10 +114,10 @@ class Calendar extends PureComponent{
   // }
 
   getTheme = () => {
-    const themeColor = '#0059ff';
+    const themeColor = '#3498db';
     const lightThemeColor = '#e6efff';
     const disabledColor = '#a6acb1';
-    const black = '#20303c';
+    const black = '#3a434a';
     const white = '#ffffff';
 
     return {

@@ -280,9 +280,40 @@ class PlannerPage extends PureComponent {
     // *******************
     // change open/close status
 
-    changeStatus = () => {
-      
+    changeStatus = (type, id, newStatus) => {
+      fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH',
+        body: JSON.stringify({
+          status: newStatus
+        })
+      }).then(resp => resp.json())
+      .then(data => {
+        console.log(type, data);
+        this.stateStatusChange(type, data)
+      })
+    }
 
+    stateStatusChange = ( type, changedItem ) => {
+      console.log(type, " changing STATUS with id of ", changedItem.id, "and data of", changedItem)
+
+      let newItems = this.state.daysItems[type].map(item => {
+        if (item.id === changedItem.id) {
+          return changedItem
+        }
+        return item
+      })
+
+      this.setState({
+        ...this.state,
+        daysItems: {
+          ...this.state.daysItems,
+          [type]: newItems
+        }
+      })
     }
 
 // ***************************************
@@ -315,6 +346,7 @@ class PlannerPage extends PureComponent {
           delete={this.deleteItem}
           edit={this.editItem}
           create={this.createItem}
+          changeStatus={this.changeStatus}
         />
         </View>
 

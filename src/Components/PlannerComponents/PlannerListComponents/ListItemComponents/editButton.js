@@ -28,7 +28,7 @@ const EditButton = props => {
               : 'md-checkmark')
         }
         size={20}
-        color={props.isEditing === false ? 'dodgerblue' : 'gray'}
+        color={props.isEditing === false ? '#94caff' : 'gray'}
         />
       </TouchableOpacity>
     </View>

@@ -22,6 +22,7 @@ import ItemIcon from './PlannerListComponents/ListItemComponents/itemIcon'
 // delete()
 // edit()
 // create()
+// changeStatus()
 // }
 
 class PlannerList extends Component {
@@ -65,7 +66,12 @@ class PlannerList extends Component {
   // NOTE: REFACTORED to account for just one ListItem component
   // inside a displayItems function
   displayItems = items => {
-    return <ListItem items={items} delete={this.props.delete} edit={this.props.edit}/>
+    return <ListItem
+      items={items}
+      delete={this.props.delete}
+      edit={this.props.edit}
+      changeStatus={this.props.changeStatus}
+    />
   }
 
   displayCreateModal = () => {

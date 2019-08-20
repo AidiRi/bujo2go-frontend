@@ -34,7 +34,7 @@ const AddButton = props => {
     // )
 
     return (
-        <ActionButton buttonColor="rgba(231,76,60,1)">
+        <ActionButton buttonColor="rgba(52, 152, 219, 1)">
           <ActionButton.Item
             buttonColor='#9b59b6'
             title="New Task"
@@ -47,7 +47,7 @@ const AddButton = props => {
               style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
-            buttonColor='#3498db'
+            buttonColor='#6d5afc'
             title="New Event"
             onPress={() => props.setItemAdding("events")}
           >
