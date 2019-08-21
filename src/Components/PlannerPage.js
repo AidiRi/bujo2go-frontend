@@ -9,6 +9,7 @@ import {
   } from 'react-native'
 import Calendar from './PlannerComponents/calendar'
 import PlannerList from './PlannerComponents/PlannerList'
+import Navbar from './PlannerComponents/Navbar'
 
 
 // props = { todaysDate , changeDateState()}
@@ -32,8 +33,8 @@ class PlannerPage extends PureComponent {
     this.setState({
       ...this.state,
       plannerDay:
-      // date
-      '2019-08-19'
+      date
+      // '2019-08-19'
       // TESTING
     }, console.log("plannerDay change"))
   }
@@ -349,6 +350,7 @@ class PlannerPage extends PureComponent {
       <View
         style={styles.MainContainer}
       >
+        <Navbar/>
         <Calendar
           setPlannerDay={this.setPlannerDay}
           todaysDate={this.props.todaysDate}
@@ -405,7 +407,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   ListStyle: {
-    flex: 1,
+    flex: 8,
     backgroundColor: 'whitesmoke',
   },
 

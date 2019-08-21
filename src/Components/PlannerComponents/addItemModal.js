@@ -36,7 +36,7 @@ class AddItemModal extends Component {
   render(){
     return(
       <View style={styles.Row}>
-        <ItemIcon type={this.props.itemAdding}/>
+        <ItemIcon type={this.props.itemAdding} status={"open"}/>
         <TextInput
           autoFocus={true}
           style={styles.TextInput}

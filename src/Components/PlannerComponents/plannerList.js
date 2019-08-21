@@ -59,6 +59,7 @@ class PlannerList extends Component {
     if ( notes && events && tasks && notes.length===0 && events.length===0 && tasks.length===0){
       return <EmptyList/>
     } else {
+      allItems = allItems.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
       return this.displayItems(allItems)
       // console.log("all items:", allItems)
     }
