@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, StyleSheet, Platform} from 'react-native'
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // props = {
 // type ,
@@ -21,18 +21,14 @@ const ItemIcon = props => {
         // IF TASKS && OPEN
         case ("open"):
           return (
-            <Ionicons
+            <MaterialCommunityIcons
             style={styles.Icon}
-            name={
-              Platform.OS === 'ios'
-                ? `ios-checkbox-outline`
-                : 'md-checkbox-outline'
-            }
+            name={'checkbox-blank-outline'}
             size={18}
             color='lightseagreen'
             onPress={() => {
               console.log("pressed open task with id: ", props.id, " and status of: ", props.status);
-              props.changeStatus(props.type, props.id, "closed")
+              props.changeStatus(props.type, props.id, props.status)
              }}
             />
           )
@@ -40,18 +36,29 @@ const ItemIcon = props => {
         // IF TASKS && CLOSED
         case ("closed"):
         return (
-          <Ionicons
+          <MaterialCommunityIcons
           style={styles.Icon}
-          name={
-            Platform.OS === 'ios'
-              ? `ios-checkbox`
-              : 'md-checkbox'
-          }
+          name={'checkbox-marked'}
           size={18}
           color='lightseagreen'
           onPress={() => {
             console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
-            props.changeStatus(props.type, props.id, "open")
+            props.changeStatus(props.type, props.id, props.status)
+          }}
+          />
+        )
+        break;
+        // IF TASKS && CANCELLED
+        case ("canceled"):
+        return (
+          <MaterialCommunityIcons
+          style={styles.Icon}
+          name={'minus-box-outline'}
+          size={18}
+          color='lightseagreen'
+          onPress={() => {
+            console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
+            props.changeStatus(props.type, props.id, props.status)
           }}
           />
         )
@@ -59,13 +66,9 @@ const ItemIcon = props => {
         // IF TASKS DEFAULT
         default:
           return (
-            <Ionicons
+            <MaterialCommunityIcons
             style={styles.Icon}
-            name={
-              Platform.OS === 'ios'
-                ? `ios-checkbox-outline`
-                : 'md-checkbox-outline'
-            }
+            name={'douban'}
             size={18}
             color='lightseagreen'
             />
@@ -80,18 +83,14 @@ const ItemIcon = props => {
         // IF EVENTS && OPEN
         case ("open"):
           return (
-            <Ionicons
+            <MaterialCommunityIcons
             style={styles.Icon}
-            name={
-              Platform.OS === 'ios'
-                ? `ios-radio-button-off`
-                : 'md-radio-button-off'
-            }
+            name={'circle-outline'}
             size={18}
             color='lightseagreen'
             onPress={() => {
               console.log("pressed open event with id: ", props.id, " and status of: ", props.status);
-              props.changeStatus(props.type, props.id, "closed")
+              props.changeStatus(props.type, props.id, props.status)
              }}
             />
           )
@@ -99,18 +98,14 @@ const ItemIcon = props => {
         // IF EVENTS && CLOSED
         case ("closed"):
         return (
-          <Ionicons
+          <MaterialCommunityIcons
           style={styles.Icon}
-          name={
-            Platform.OS === 'ios'
-              ? `ios-radio-button-on`
-              : 'md-radio-button-on'
-          }
+          name={'circle-slice-8'}
           size={18}
           color='lightseagreen'
           onPress={() => {
             console.log("pressed closed event with id: ", props.id, " and status of: ", props.status);
-            props.changeStatus(props.type, props.id, "open")
+            props.changeStatus(props.type, props.id, props.status)
           }}
           />
         )
@@ -118,13 +113,9 @@ const ItemIcon = props => {
         // IF EVENTS DEFAULT
         default:
           return (
-            <Ionicons
+            <MaterialCommunityIcons
             style={styles.Icon}
-            name={
-              Platform.OS === 'ios'
-                ? `ios-radio-button-off`
-                : 'md-radio-button-off'
-            }
+            name={'douban'}
             size={18}
             color='lightseagreen'
             />
@@ -137,13 +128,9 @@ const ItemIcon = props => {
     case  ("notes"):
       // IF NOTES
       return (
-        <Ionicons
+        <MaterialCommunityIcons
         style={styles.Icon}
-        name={
-          Platform.OS === 'ios'
-            ? `ios-remove`
-            : 'md-remove'
-        }
+        name={'minus'}
         size={18}
         color='lightseagreen'
         />
@@ -153,13 +140,9 @@ const ItemIcon = props => {
     // ITEM ICON DEFAULT
     default:
       return (
-        <Ionicons
+        <MaterialCommunityIcons
         style={styles.Icon}
-        name={
-          Platform.OS === 'ios'
-            ? `ios-paw`
-            : 'md-paw'
-        }
+        name={'douban'}
         size={18}
         color='lightseagreen'
         />

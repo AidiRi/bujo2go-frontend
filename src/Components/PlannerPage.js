@@ -285,7 +285,9 @@ class PlannerPage extends PureComponent {
     // *******************
     // change open/close status
 
-    changeStatus = (type, id, newStatus) => {
+    changeStatus = (type, id, oldStatus) => {
+      const newStatus = this.setNewStatus(oldStatus)
+
       fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
         headers: {
           'Accept': 'application/json',
@@ -300,6 +302,22 @@ class PlannerPage extends PureComponent {
         console.log(type, data);
         this.stateStatusChange(type, data)
       })
+    }
+
+    setNewStatus = (oldStatus) => {
+      switch (oldStatus) {
+        case "open":
+          return "closed"
+          break;
+        case "closed":
+          return "canceled"
+          break;
+        case "canceled":
+          return "open"
+          break;
+        default:
+          console.log("ERROR @ setNewStatus in PlannerPage")
+      }
     }
 
     stateStatusChange = ( type, changedItem ) => {
