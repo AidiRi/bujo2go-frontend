@@ -10,7 +10,6 @@ import { Ionicons } from '@expo/vector-icons';
 const DeleteButton = props => {
 
   return (
-    <View style={styles.DeleteSpace}>
       <TouchableOpacity
         style={styles.DeleteButton}
         activeOpacity={0.7}
@@ -22,30 +21,22 @@ const DeleteButton = props => {
             ? `ios-close`
             : 'md-close'
         }
-        size={20}
+        size={18}
         color='#8fe3de'
         />
       </TouchableOpacity>
-    </View>
   )
 }
 
 
 const styles= StyleSheet.create({
   DeleteButton: {
+    flex: 1,
     // backgroundColor: 'darkblue',
-    width:20,
-
     alignItems: 'center',
-    padding: 2,
-    margin: 4,
-    marginTop: 0,
-    justifyContent: 'flex-end',
-
+    padding: 5,
+    justifyContent: 'center',
   },
-  DeleteSpace: {
-    height: '100%'
-  }
 })
 
 

@@ -28,7 +28,7 @@ const ItemIcon = props => {
                 ? `ios-checkbox-outline`
                 : 'md-checkbox-outline'
             }
-            size={20}
+            size={18}
             color='lightseagreen'
             onPress={() => {
               console.log("pressed open task with id: ", props.id, " and status of: ", props.status);
@@ -47,7 +47,7 @@ const ItemIcon = props => {
               ? `ios-checkbox`
               : 'md-checkbox'
           }
-          size={20}
+          size={18}
           color='lightseagreen'
           onPress={() => {
             console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
@@ -66,7 +66,7 @@ const ItemIcon = props => {
                 ? `ios-checkbox-outline`
                 : 'md-checkbox-outline'
             }
-            size={20}
+            size={18}
             color='lightseagreen'
             />
           )
@@ -87,7 +87,7 @@ const ItemIcon = props => {
                 ? `ios-radio-button-off`
                 : 'md-radio-button-off'
             }
-            size={20}
+            size={18}
             color='lightseagreen'
             onPress={() => {
               console.log("pressed open event with id: ", props.id, " and status of: ", props.status);
@@ -106,7 +106,7 @@ const ItemIcon = props => {
               ? `ios-radio-button-on`
               : 'md-radio-button-on'
           }
-          size={20}
+          size={18}
           color='lightseagreen'
           onPress={() => {
             console.log("pressed closed event with id: ", props.id, " and status of: ", props.status);
@@ -125,7 +125,7 @@ const ItemIcon = props => {
                 ? `ios-radio-button-off`
                 : 'md-radio-button-off'
             }
-            size={20}
+            size={18}
             color='lightseagreen'
             />
           )
@@ -144,7 +144,7 @@ const ItemIcon = props => {
             ? `ios-remove`
             : 'md-remove'
         }
-        size={20}
+        size={18}
         color='lightseagreen'
         />
       )
@@ -160,7 +160,7 @@ const ItemIcon = props => {
             ? `ios-paw`
             : 'md-paw'
         }
-        size={20}
+        size={18}
         color='lightseagreen'
         />
       )
@@ -170,10 +170,14 @@ const ItemIcon = props => {
 
 const styles = StyleSheet.create({
   Icon: {
-    height: '100%',
-    width: 30,
-    alignItems: 'flex-start',
+    flex: 1,
+    padding: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
     // backgroundColor: 'blue',
+    marginLeft: 3,
+    marginRight: -3,
+
   }
 })
 

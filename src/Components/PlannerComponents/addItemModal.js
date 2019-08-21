@@ -43,14 +43,16 @@ class AddItemModal extends Component {
           onChangeText={text=> this.setText(text)}
           onSubmitEditing={() => {
             this.props.create(this.props.itemAdding, this.state.text)
-            console.log(this.state.text); this.props.setItemAdding(null)}}/>
+            console.log(this.state.text); this.props.setItemAdding(null)}}
+          onBlur={() => this.props.setItemAdding(null)}
+          />
         <Ionicons
           style={styles.Icon}
           name={Platform.OS === 'ios'
             ? `ios-add`
             : 'md-add'}
           size={20}
-          color={'dodgerblue'}
+          color={'lightseagreen'}
           onPress={()=> {
             this.props.create(this.props.itemAdding, this.state.text)
             console.log(this.state.text); this.props.setItemAdding(null)}}
@@ -62,22 +64,15 @@ class AddItemModal extends Component {
 }
 
 const styles = StyleSheet.create({
-  ModalContainer: {
-    flex:1,
-    position:'absolute',
-    backgroundColor:'gray',
-    height: 200,
-    width: '100%',
-    bottom: 70,
-  },
   Row: {
     flexDirection: 'row',
     marginBottom: 5,
     backgroundColor: 'white',
     borderRadius: 10,
     padding: 2,
-    alignItems: 'stretch',
-    justifyContent: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: 'gray'
   },
   TextInput: {
     width: '75%'
@@ -85,8 +80,9 @@ const styles = StyleSheet.create({
   Icon: {
     height: '100%',
     width: 30,
-    alignItems: 'flex-start',
-    // backgroundColor: 'blue',
+    alignItems: 'center',
+    // backgroundColor: 'yellow',
+    padding: 5,
   }
 });
 

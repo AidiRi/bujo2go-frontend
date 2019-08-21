@@ -92,8 +92,19 @@ class Item extends PureComponent {
               id={this.props.item.id} type={String(this.props.type)}
               itemText={this.state.itemText}
               autoFocus={true}
-              onChangeText={text => {this.setItemText(text); console.log(text)}}
-              onSubmitEditing={()=>{this.setIsEditing(false); this.props.edit(this.props.item.id, this.props.type, this.state.itemText)}}
+              onChangeText={text => {
+                this.setItemText(text);
+                console.log(text)
+              }}
+              onSubmitEditing={()=>{
+                this.setIsEditing(false);
+                this.props.edit(this.props.item.id, this.props.type, this.state.itemText)
+              }}
+              onBlur={()=> {
+                console.log("blurring during edit");
+                this.setIsEditing(false);
+                this.props.edit(this.props.item.id, this.props.type, this.state.itemText)
+              }}
             />
             <EditButton
             setIsEditing={this.setIsEditing}
@@ -135,7 +146,14 @@ class Item extends PureComponent {
               itemText={this.state.itemText}
               autoFocus={true}
               onChangeText={text => {this.setItemText(text); console.log(text)}}
-              onSubmitEditing={()=>{this.setIsEditing(false); this.props.edit(this.props.item.id, this.props.type, this.state.itemText); console.log("Submitting edit with", this.state.itemText)}}
+              onSubmitEditing={()=>{
+                this.setIsEditing(false); this.props.edit(this.props.item.id, this.props.type, this.state.itemText); console.log("Submitting edit with", this.state.itemText)
+              }}
+              onBlur={()=> {
+                console.log("blurring during edit");
+                this.setIsEditing(false);
+                this.props.edit(this.props.item.id, this.props.type, this.state.itemText)
+              }}
               setItemText={this.setItemText}
             />
             <EditButton
@@ -155,16 +173,17 @@ class Item extends PureComponent {
 
 const styles = StyleSheet.create({
   Row: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: 5,
     backgroundColor: 'white',
     borderRadius: 10,
-    padding: 2,
-    alignItems: "center",
-    justifyContent: "center"
+
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: 'skyblue'
   },
   ItemText: {
-    width: "75%",
+    flex: 8,
     // backgroundColor: "skyblue"
     // backgroundColor: "gray",
 
