@@ -110,6 +110,20 @@ const ItemIcon = props => {
           />
         )
         break;
+        case ("canceled"):
+        return (
+          <MaterialCommunityIcons
+          style={styles.Icon}
+          name={'minus-circle-outline'}
+          size={18}
+          color='lightseagreen'
+          onPress={() => {
+            console.log("pressed canceled event with id: ", props.id, " and status of: ", props.status);
+            props.changeStatus(props.type, props.id, props.status)
+          }}
+          />
+        )
+        break;
         // IF EVENTS DEFAULT
         default:
           return (
@@ -125,7 +139,7 @@ const ItemIcon = props => {
       break;
 
 
-    case  ("notes"):
+    case ("notes"):
       // IF NOTES
       return (
         <MaterialCommunityIcons

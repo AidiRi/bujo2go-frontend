@@ -68,7 +68,7 @@ class Item extends PureComponent {
               id={this.props.item.id}
               changeStatus={this.props.changeStatus}
             />
-            <Text style={styles.ItemText}>
+            <Text style={this.props.item.status === 'canceled' ? styles.CanceledText : styles.ItemText}>
               {this.state.itemText}
             </Text>
             <EditButton
@@ -186,8 +186,12 @@ const styles = StyleSheet.create({
     flex: 8,
     // backgroundColor: "skyblue"
     // backgroundColor: "gray",
-
   },
+  CanceledText: {
+    flex: 8,
+    textDecorationLine: 'line-through',
+    // color: 'gray',
+  }
 });
 
 export default Item;
