@@ -6,8 +6,21 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+// Props ={
+// setPlannerDay()
+// todaysDate
+// }
+Navbar = props => {
 
-Navbar = () => {
+  let data = [{
+        value: 'All',
+      }, {
+        value: 'Tasks',
+      }, {
+        value: 'Events',
+      }, {
+        value: 'Notes',
+      }];
 
   return (
     <View style={styles.Navbar}>
@@ -17,7 +30,7 @@ Navbar = () => {
           size={30}
           color={'black'}
 
-          onPress={() => console.log("pressed on CALENDAR icon")}
+          onPress={() => props.setPlannerDay(props.todaysDate)}
         />
       </View>
       <View style={styles.menuIcon}>

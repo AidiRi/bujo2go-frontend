@@ -36,7 +36,7 @@ class PlannerPage extends PureComponent {
       date
       // '2019-08-19'
       // TESTING
-    }, console.log("plannerDay change"))
+    }, (console.log("plannerDay change"), this.callItems()))
   }
 
   // ***********************
@@ -350,7 +350,10 @@ class PlannerPage extends PureComponent {
       <View
         style={styles.MainContainer}
       >
-        <Navbar/>
+        <Navbar
+          todaysDate={this.props.todaysDate}
+          setPlannerDay={this.setPlannerDay}
+        />
         <Calendar
           setPlannerDay={this.setPlannerDay}
           todaysDate={this.props.todaysDate}
@@ -383,7 +386,7 @@ class PlannerPage extends PureComponent {
   componentDidMount(){
 
     this.setPlannerDay(this.props.todaysDate)
-    this.callItems()
+    
   }
 
   // shouldComponentUpdate(nextProp, nextState){

@@ -53,7 +53,6 @@ class Calendar extends PureComponent{
     if ( date.length ){
       this.props.setPlannerDay(date)
       console.log("date change, setPlannerDay invoked")
-      this.props.reCallItems()
     } else {
       console.log(date, "No change: date is null ")
     }
