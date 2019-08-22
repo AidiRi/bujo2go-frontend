@@ -27,7 +27,7 @@ const ItemIcon = props => {
             size={18}
             color='lightseagreen'
             onPress={() => {
-              console.log("pressed open task with id: ", props.id, " and status of: ", props.status);
+              // console.log("pressed open task with id: ", props.id, " and status of: ", props.status);
               props.changeStatus(props.type, props.id, props.status)
              }}
             />
@@ -42,7 +42,7 @@ const ItemIcon = props => {
           size={18}
           color='lightseagreen'
           onPress={() => {
-            console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
+            // console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
             props.changeStatus(props.type, props.id, props.status)
           }}
           />
@@ -57,7 +57,7 @@ const ItemIcon = props => {
           size={18}
           color='lightseagreen'
           onPress={() => {
-            console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
+            // console.log("pressed closed task with id:", props.id, " and status of: ", props.status);
             props.changeStatus(props.type, props.id, props.status)
           }}
           />
@@ -89,7 +89,7 @@ const ItemIcon = props => {
             size={18}
             color='lightseagreen'
             onPress={() => {
-              console.log("pressed open event with id: ", props.id, " and status of: ", props.status);
+              // console.log("pressed open event with id: ", props.id, " and status of: ", props.status);
               props.changeStatus(props.type, props.id, props.status)
              }}
             />
@@ -104,7 +104,7 @@ const ItemIcon = props => {
           size={18}
           color='lightseagreen'
           onPress={() => {
-            console.log("pressed closed event with id: ", props.id, " and status of: ", props.status);
+            // console.log("pressed closed event with id: ", props.id, " and status of: ", props.status);
             props.changeStatus(props.type, props.id, props.status)
           }}
           />
@@ -118,7 +118,7 @@ const ItemIcon = props => {
           size={18}
           color='lightseagreen'
           onPress={() => {
-            console.log("pressed canceled event with id: ", props.id, " and status of: ", props.status);
+            // console.log("pressed canceled event with id: ", props.id, " and status of: ", props.status);
             props.changeStatus(props.type, props.id, props.status)
           }}
           />

@@ -20,12 +20,13 @@ class PlannerPage extends PureComponent {
     this.state = {
       userId: 2,
       isAddModalOpen: false,
+      filterSelection: 'All',
       plannerDay: null,
       daysItems: {
         notes: null,
         tasks: null,
         events: null
-      }
+      },
     }
   }
 
@@ -36,7 +37,17 @@ class PlannerPage extends PureComponent {
       date
       // '2019-08-19'
       // TESTING
-    }, (console.log("plannerDay change"), this.callItems()))
+    }, (
+    // console.log("plannerDay change"),
+      this.callItems()
+      )
+    )
+  }
+
+  setFilterSelection = value => {
+    this.setState({
+      filterSelection: value
+    })
   }
 
   // ***********************
@@ -44,7 +55,9 @@ class PlannerPage extends PureComponent {
   callItems = () => {
     fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.state.userId}`)
     .then(resp=> resp.json())
-    .then(data => {this.divideAllItems(data); console.log("calling data")} )
+    .then(data => {this.divideAllItems(data);
+      // console.log("calling data")
+  } )
   }
   // console.log(data["tasks"][0].date)
 
@@ -53,9 +66,9 @@ class PlannerPage extends PureComponent {
     let notes = this.getTodaysSingleItem(data["notes"])
     let tasks = this.getTodaysSingleItem(data["tasks"])
     let events = this.getTodaysSingleItem(data["events"])
-    console.log("notes: ", notes)
-    console.log("tasks: ", tasks)
-    console.log("events: ", events)
+    // console.log("notes: ", notes)
+    // console.log("tasks: ", tasks)
+    // console.log("events: ", events)
     // setState for daysItems for each item
     this.setTodaysItemsState(notes, tasks, events)
   }
@@ -64,7 +77,7 @@ class PlannerPage extends PureComponent {
     getTodaysSingleItem = items => {
       let itemsArray = []
       items.forEach(item =>{
-        console.log("getting single items for day:", this.state.plannerDay)
+        // console.log("getting single items for day:", this.state.plannerDay)
         if (item.date && item.date === this.state.plannerDay){
           itemsArray.push(item)
         } else if ( item.datetime && item.datetime.split('T')[0] === this.state.plannerDay){
@@ -98,7 +111,7 @@ class PlannerPage extends PureComponent {
 
 // deleting items from plannerList
   deleteItem = (id, type ) => {
-    console.log(type, " item deleting with id of ", id)
+    // console.log(type, " item deleting with id of ", id)
 
     fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
       method: 'DELETE'
@@ -126,7 +139,7 @@ class PlannerPage extends PureComponent {
   // TODO: figure out whether adding multiple addons would be crazyTalk code
   // Editing Items in plannerList
   editItem = (id, type, data) => {
-    console.log(type, " item SWITCHING with id of:", id, "and data of:", data)
+    // console.log(type, " item SWITCHING with id of:", id, "and data of:", data)
     // conditional fetching based on item type
     switch (type) {
       case "notes":
@@ -147,7 +160,7 @@ class PlannerPage extends PureComponent {
   }
 
   patchItemData = (id, type, content, dataName) => {
-    console.log(type, " item PATCHING with id of ", id, "and content of", content)
+    // console.log(type, " item PATCHING with id of ", id, "and content of", content)
     fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/${id}`, {
       headers: {
         'Accept': 'application/json',
@@ -163,7 +176,7 @@ class PlannerPage extends PureComponent {
 
 
   editItemInState = (type, patchedItem) => {
-    console.log(type, " STATE EDITING with id of ", patchedItem.id, "and data of", patchedItem)
+    // console.log(type, " STATE EDITING with id of ", patchedItem.id, "and data of", patchedItem)
 
     let newItems = this.state.daysItems[type].map(item => {
       if (item.id === patchedItem.id) {
@@ -190,15 +203,15 @@ class PlannerPage extends PureComponent {
     createItem = (type, content, important, time) => {
       switch (type) {
         case "events":
-          console.log("creating event")
+          // console.log("creating event")
           this.postItem(type, content, null, time)
           break;
         case "tasks":
-        console.log("creating task")
+        // console.log("creating task")
           this.postItem(type, content, important)
           break;
         case "notes":
-        console.log("creating note")
+        // console.log("creating note")
           this.postItem(type, content)
           break;
         default:
@@ -210,12 +223,8 @@ class PlannerPage extends PureComponent {
     postItem = (type, content, important, time) => {
 
       const  itemBody = this.setItemBody(type, content, important, time)
-      console.log();    console.log()
-      console.log(this.state.daysItems)
-      console.log()
-      console.log()
 
-      console.log("itemBody: ", itemBody)
+      // console.log("itemBody: ", itemBody)
 
       fetch(`https://mod5-bullet-journal-api.herokuapp.com/users/${this.props.userId}/${type}/`, {
         headers: {
@@ -226,7 +235,9 @@ class PlannerPage extends PureComponent {
         body: JSON.stringify(itemBody)
       })
       .then(resp => resp.json())
-      .then(data =>{  console.log("POST fetch data:", data); this.displayNewItem(type, data);})
+      .then(data =>{
+        // console.log("POST fetch data:", data);
+         this.displayNewItem(type, data);})
     }
 
 
@@ -269,7 +280,7 @@ class PlannerPage extends PureComponent {
     }
 
     displayNewItem = (type, data) => {
-      console.log("Setting state with new", type,": ", data)
+      // console.log("Setting state with new", type,": ", data)
 
       let newItemsArray = this.state.daysItems[type].slice();
       newItemsArray.push(data)
@@ -280,7 +291,9 @@ class PlannerPage extends PureComponent {
           ...this.state.daysItems,
           [type]: newItemsArray
         }
-      }, console.log("Setting State with new array of ", type, ": ", newItemsArray))
+      },
+      // console.log("Setting State with new array of ", type, ": ", newItemsArray)
+    )
     }
 
     // *******************
@@ -300,7 +313,7 @@ class PlannerPage extends PureComponent {
         })
       }).then(resp => resp.json())
       .then(data => {
-        console.log(type, data);
+        // console.log(type, data);
         this.stateStatusChange(type, data)
       })
     }
@@ -322,7 +335,7 @@ class PlannerPage extends PureComponent {
     }
 
     stateStatusChange = ( type, changedItem ) => {
-      console.log(type, " changing STATUS with id of ", changedItem.id, "and data of", changedItem)
+      // console.log(type, " changing STATUS with id of ", changedItem.id, "and data of", changedItem)
 
       let newItems = this.state.daysItems[type].map(item => {
         if (item.id === changedItem.id) {
@@ -353,6 +366,8 @@ class PlannerPage extends PureComponent {
         <Navbar
           todaysDate={this.props.todaysDate}
           setPlannerDay={this.setPlannerDay}
+          filterSelection={this.state.filterSelection}
+          setFilterSelection={this.setFilterSelection}
         />
         <Calendar
           setPlannerDay={this.setPlannerDay}
@@ -375,6 +390,7 @@ class PlannerPage extends PureComponent {
           edit={this.editItem}
           create={this.createItem}
           changeStatus={this.changeStatus}
+          filterSelection={this.state.filterSelection}
         />
         </View>
 
@@ -386,7 +402,7 @@ class PlannerPage extends PureComponent {
   componentDidMount(){
 
     this.setPlannerDay(this.props.todaysDate)
-    
+
   }
 
   // shouldComponentUpdate(nextProp, nextState){

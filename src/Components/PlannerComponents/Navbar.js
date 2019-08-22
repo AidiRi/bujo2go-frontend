@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
   Text,
+  TouchableOpacity
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
@@ -11,63 +12,65 @@ import { Dropdown } from 'react-native-material-dropdown';
 // Props ={
 // setPlannerDay()
 // todaysDate
+// filterSelection
+// setFilterSelection()
 // }
-class Navbar extends Component {
+Navbar = props => {
 
-  constructor(){
-    super()
-    this.state = {
-      chosenItem: 'All'
-    }
-  }
-  _menu = null;
+  const _menu = null;
 
-  setMenuRef = ref => {
+  const setMenuRef = ref => {
     this._menu = ref;
   };
 
-  hideMenu = () => {
+  const hideMenu = () => {
     this._menu.hide();
   };
 
-  showMenu = () => {
+  const showMenu = () => {
     this._menu.show();
   };
 
-  render(){
-    return (
-      <View style={styles.Navbar}>
-        <View style={styles.calendarIcon}>
-          <MaterialCommunityIcons
-            name='calendar-today'
-            size={30}
-            color={'black'}
+  const setFilterSelection = () => {
+    props.setFilterSelection();
+  }
 
-            onPress={() => props.setPlannerDay(props.todaysDate)}
-          />
-        </View>
-        <View style={styles.menuIcon} >
-          <Text>{this.state.chosenItem}</Text>
-          <Menu
-            ref={this.setMenuRef}
-            button={<MaterialCommunityIcons
+  return (
+    <View style={styles.Navbar}>
+      <View style={styles.calendarIcon}>
+        <MaterialCommunityIcons
+          name='calendar-today'
+          size={23}
+          color={'whitesmoke'}
+
+          onPress={() => props.setPlannerDay(props.todaysDate)}
+        />
+      </View>
+      <View style={styles.menu}>
+
+        <Menu
+          ref={setMenuRef}
+          button={
+            <TouchableOpacity onPress={showMenu} style={styles.menuButton}>
+            <Text style={styles.menuLabel}>{props.filterSelection}</Text>
+            <MaterialCommunityIcons
               name='menu-down'
               size={30}
-              color={'black'}
-              onPress={this.showMenu}
-            />}
-          >
-            <MenuItem onPress={this.hideMenu}>All</MenuItem>
-            <MenuItem onPress={this.hideMenu}>Tasks</MenuItem>
-            <MenuItem onPress={this.hideMenu}>Events</MenuItem>
-            <MenuItem onPress={this.hideMenu}>Notes</MenuItem>
-          </Menu>
-        </View>
-
-
+              color={'whitesmoke'}
+            />
+            </TouchableOpacity>
+          }
+        >
+          <MenuItem onPress={()=>{this._menu.hide(); props.setFilterSelection("All")}}>All</MenuItem>
+          <MenuItem onPress={()=>{this._menu.hide(); props.setFilterSelection("Tasks")}}>Tasks</MenuItem>
+          <MenuItem onPress={()=>{this._menu.hide(); props.setFilterSelection("Events")}}>Events</MenuItem>
+          <MenuItem onPress={()=>{this._menu.hide(); props.setFilterSelection("Notes")}}>Notes</MenuItem>
+        </Menu>
       </View>
-    )
-  }
+
+
+    </View>
+  )
 
 }
 
@@ -80,12 +83,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     backgroundColor: 'steelblue'
   },
-  menuIcon: {
+  menu: {
     flexDirection: 'row',
     // backgroundColor: 'purple',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50
+
   },
   calendarIcon: {
     alignItems: 'center',
@@ -94,9 +97,18 @@ const styles = StyleSheet.create({
     // backgroundColor: 'yellow',
     width: 50,
   },
-  dropdownText: {
+  menuButton: {
+    // backgroundColor: 'whitesmoke',
+    width: 70,
+    flexDirection: 'row'
 
-
+  },
+  menuLabel: {
+    fontSize: 16,
+    textAlignVertical: 'center',
+    color: 'whitesmoke'
+    // lineHeight: 40,
+    // color: 'purple'
   }
 })
 

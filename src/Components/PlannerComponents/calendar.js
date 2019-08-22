@@ -52,9 +52,9 @@ class Calendar extends PureComponent{
   onDateChanged = ( date, updateSource ) => {
     if ( date.length ){
       this.props.setPlannerDay(date)
-      console.log("date change, setPlannerDay invoked")
+      // console.log("date change, setPlannerDay invoked")
     } else {
-      console.log(date, "No change: date is null ")
+      // console.log(date, "No change: date is null ")
     }
 
   }

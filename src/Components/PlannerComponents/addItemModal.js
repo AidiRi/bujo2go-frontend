@@ -43,7 +43,8 @@ class AddItemModal extends Component {
           onChangeText={text=> this.setText(text)}
           onSubmitEditing={() => {
             this.props.create(this.props.itemAdding, this.state.text)
-            console.log(this.state.text); this.props.setItemAdding(null)}}
+            // console.log(this.state.text);
+             this.props.setItemAdding(null)}}
           onBlur={() => this.props.setItemAdding(null)}
           />
         <Ionicons
@@ -55,7 +56,8 @@ class AddItemModal extends Component {
           color={'lightseagreen'}
           onPress={()=> {
             this.props.create(this.props.itemAdding, this.state.text)
-            console.log(this.state.text); this.props.setItemAdding(null)}}
+            // console.log(this.state.text);
+             this.props.setItemAdding(null)}}
           />
       </View>
 

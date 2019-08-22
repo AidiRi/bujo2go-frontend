@@ -24,6 +24,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 // edit()
 // create()
 // changeStatus()
+// filterSelection
 // }
 
 class PlannerList extends Component {
@@ -42,26 +43,54 @@ class PlannerList extends Component {
       events.forEach(event => {
         allItems.push(event)
       })
-      // return this.displayItems(events, "events")
     }
    if (tasks && tasks.length > 0) {
       tasks.forEach(task => {
         allItems.push(task)
       })
-      // return this.displayItems(tasks, "tasks")
     }
     if ( notes && notes.length > 0 ){
       notes.forEach(note => {
         allItems.push(note)
       })
-      // return this.displayItems(notes, "notes")
     }
     if ( notes && events && tasks && notes.length===0 && events.length===0 && tasks.length===0){
       return <EmptyList/>
     } else {
-      allItems = allItems.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
-      return this.displayItems(allItems)
+
+      const sortedItems = this.filterItems(allItems)
+
+
+      return this.displayItems(sortedItems)
       // console.log("all items:", allItems)
+    }
+  }
+
+  filterItems = allItems => {
+
+    let items = allItems.slice()
+
+    switch (this.props.filterSelection) {
+      case "All":
+        return items.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
+        break;
+
+      case "Tasks":
+        items = items.filter( item => item.item_type === "tasks")
+        return items.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
+
+      case "Events":
+        items = items.filter( item => item.item_type === "events")
+        return items.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
+        break;
+
+      case "Notes":
+        items = items.filter( item => item.item_type === "notes")
+        return items.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
+        break;
+
+      default:
+        return items.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
     }
   }
 
