@@ -1,50 +1,73 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
-  Picker
+  Text,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import { Dropdown } from 'react-native-material-dropdown';
 
 // Props ={
 // setPlannerDay()
 // todaysDate
 // }
-Navbar = props => {
+class Navbar extends Component {
 
-  let data = [{
-        value: 'All',
-      }, {
-        value: 'Tasks',
-      }, {
-        value: 'Events',
-      }, {
-        value: 'Notes',
-      }];
+  constructor(){
+    super()
+    this.state = {
+      chosenItem: 'All'
+    }
+  }
+  _menu = null;
 
-  return (
-    <View style={styles.Navbar}>
-      <View style={styles.calendarIcon}>
-        <MaterialCommunityIcons
-          name='calendar-today'
-          size={30}
-          color={'black'}
+  setMenuRef = ref => {
+    this._menu = ref;
+  };
 
-          onPress={() => props.setPlannerDay(props.todaysDate)}
-        />
+  hideMenu = () => {
+    this._menu.hide();
+  };
+
+  showMenu = () => {
+    this._menu.show();
+  };
+
+  render(){
+    return (
+      <View style={styles.Navbar}>
+        <View style={styles.calendarIcon}>
+          <MaterialCommunityIcons
+            name='calendar-today'
+            size={30}
+            color={'black'}
+
+            onPress={() => props.setPlannerDay(props.todaysDate)}
+          />
+        </View>
+        <View style={styles.menuIcon} >
+          <Text>{this.state.chosenItem}</Text>
+          <Menu
+            ref={this.setMenuRef}
+            button={<MaterialCommunityIcons
+              name='menu-down'
+              size={30}
+              color={'black'}
+              onPress={this.showMenu}
+            />}
+          >
+            <MenuItem onPress={this.hideMenu}>All</MenuItem>
+            <MenuItem onPress={this.hideMenu}>Tasks</MenuItem>
+            <MenuItem onPress={this.hideMenu}>Events</MenuItem>
+            <MenuItem onPress={this.hideMenu}>Notes</MenuItem>
+          </Menu>
+        </View>
+
+
       </View>
-      <View style={styles.menuIcon}>
-        <MaterialCommunityIcons
-          name='menu-down'
-          size={30}
-          color={'black'}
-          onPress={() => console.log("pressed on MENU icon")}
-        />
-      </View>
-
-
-    </View>
-  )
+    )
+  }
 
 }
 
@@ -70,8 +93,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     // backgroundColor: 'yellow',
     width: 50,
-  }
+  },
+  dropdownText: {
 
+
+  }
 })
 
 export default Navbar;
