@@ -421,13 +421,15 @@ class PlannerPage extends PureComponent {
   // }
 }
 
+//TODO: Account for calendar and listStyle sizing issues.
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
   },
   ListStyle: {
-    flex: 8,
+    flex: 2,
     backgroundColor: 'whitesmoke',
+
   },
 
   TouchableOpacityStyle: {
